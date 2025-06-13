@@ -1,6 +1,11 @@
+use crate::PeaParse::PeaParsed;
+use regex::Regex;
+
+mod PeaParse;
+mod PeaColor;
 
 #[macro_export]
-macro_rules! peacock {
+macro_rules! pealn {
     // Handle format string with arguments
     ($fmt:expr, $($arg:expr),*) => {
         {
@@ -16,42 +21,55 @@ macro_rules! peacock {
 }
 
 pub fn myprintln_impl(input: &str) {
-    let output = parse_custom_format(input);
+    let output = parse_peacock_format(input);
     println!("{}", output);
 }
 
 
-fn parse_custom_format(input: &str) -> String {
-    use regex::Regex;
-
-    let styles = [
-        ("green", "\x1b[32m"),
-        ("red", "\x1b[31m"),
-        ("yellow", "\x1b[33m"),
-        ("blue", "\x1b[34m"),
-        ("magenta", "\x1b[35m"),
-        ("cyan", "\x1b[36m"),
-        ("white", "\x1b[37m"),
-
-    ];
+fn parse_peacock_format(input: &str) -> String {
   
    let mut result = input.to_string();
+    
+    let re = Regex::new(r"\[([^\]]*)\]\(([^)]*)\)").unwrap();
 
-   for (key, code) in styles.iter() {
-        // Handle variables: yellow({}) → \x1b[33m{}\x1b[0m
-        let variable_pattern = Regex::new(&format!(r#"{0}\(\{{\}}\)"#, key)).unwrap();
-        result = variable_pattern
-            .replace_all(&result, format!("{code}{{}}\x1b[0m"))
-            .to_string();
-            
-        // Handle static text: yellow(text) → \x1b[33mtext\x1b[0m  
-        let static_pattern = Regex::new(&format!(r#"{0}\((.*?)\)"#, key)).unwrap();
-        result = static_pattern
-            .replace_all(&result, format!("{code}$1\x1b[0m"))
-            .to_string();
+    //capture  full match &cap[0], text in brackets &cap[1], text in parentheses &cap[2]
+    
+    // Iterate over all captures and create PeaParse list
+
+    let mut parse_list:Vec<PeaParse::PeaParsed> = Vec::new();
+
+    for cap in re.captures_iter(&result) {
+    let full_match = cap.get(0).unwrap(); // Get the full match to access start/end indices
+    parse_list.push(
+        PeaParsed {
+            startIndex: full_match.start(),
+            endIndex: full_match.end(),
+            modifier: cap[1].to_string(),
+            value: cap[2].to_string()
+        }
+     );
+   } 
+
+   
+
+    //now format the result string
+    let mut formatted_result:Vec<(&PeaParsed ,String)> = Vec::new();
+    
+    for parsed in &parse_list {
+        let (r,g,b) =PeaColor::PeaColor::from(parsed.modifier.as_str()).rgb();
+        formatted_result.push((parsed ,format!("\x1b[38;2;{};{};{}m{}\x1b[0m", r, g, b, parsed.value)));
     }
 
-    result
+
+    // Replace the original formatted parts in the result string
+    for (parsed, formatted) in formatted_result.iter().rev() {
+        let start = parsed.startIndex;
+        let end = parsed.endIndex;
+        result.replace_range(start..end, &formatted);
+    }
+    
+
+   result
 }
 
 
