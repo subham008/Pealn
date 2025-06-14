@@ -3,6 +3,7 @@ use regex::Regex;
 
 mod PeaParse;
 mod PeaColor;
+mod PeaStyle;
 
 #[macro_export]
 macro_rules! pealn {
@@ -48,6 +49,9 @@ pub fn peacock_impl(input: &str , ln:bool) {
 }
 
 
+
+
+
 fn parse_peacock_format(input: &str) -> String {
   
    let mut result = input.to_string();
@@ -74,15 +78,18 @@ fn parse_peacock_format(input: &str) -> String {
     let mut formatted_result:Vec<(&PeaParsed ,String)> = Vec::new();
     
     for parsed in &parse_list {
-        let pea_parse = PeaColor::PeaColor::from(parsed.modifier.as_str());
-
-        let (r,g,b) =match pea_parse.rgb() {
+        let pea_color = PeaColor::PeaColor::from(parsed.modifier.as_str());
+        
+        let (r,g,b) =match pea_color.rgb() {
             Ok((r, g, b)) => (r, g, b),
             Err(err) => {panic!("{} at {}",err, parsed.fullMatch)}, // Default to white if parsing fails 
         };
 
         formatted_result.push((parsed ,format!("\x1b[38;2;{};{};{}m{}\x1b[0m", r, g, b, parsed.value)));
     }
+
+
+    
 
     // Replace the original formatted parts in the result string
     for (parsed, formatted) in formatted_result.iter().rev() {
@@ -93,5 +100,6 @@ fn parse_peacock_format(input: &str) -> String {
     
    result
 }
+
 
 
