@@ -10,19 +10,41 @@ macro_rules! pealn {
     ($fmt:expr, $($arg:expr),*) => {
         {
             let formatted = format!($fmt, $($arg),*);
-            $crate::myprintln_impl(&formatted);
+            $crate::peacock_impl(&formatted , true);
         }
     };
     // Handle format string without arguments
     ($msg:expr) => {
-        $crate::myprintln_impl($msg);
+        $crate::peacock_impl($msg , true);
     };
 
 }
 
-pub fn myprintln_impl(input: &str) {
+
+#[macro_export]
+macro_rules! pea {
+    // Handle format string with arguments
+    ($fmt:expr, $($arg:expr),*) => {
+        {
+            let formatted = format!($fmt, $($arg),*);
+            $crate::peacock_impl(&formatted , false);
+        }
+    };
+    // Handle format string without arguments
+    ($msg:expr) => {
+        $crate::peacock_impl($msg , false);
+    };
+
+}
+
+pub fn peacock_impl(input: &str , ln:bool) {
     let output = parse_peacock_format(input);
-    println!("{}", output);
+    if  ln {
+        println!("{}", output);
+    } else {
+        print!("{}", output);
+        
+    }
 }
 
 

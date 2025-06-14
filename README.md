@@ -29,7 +29,11 @@ use peacock::pealn;
 
 fn main() {
     //using predefined and RGB color
-      pealn!("Name:[yellow](John Doe)\nAge:[(218, 66, 245)](23)");
+    pealn!("Name:[yellow](John Doe)\nAge:[(218, 66, 245)](23)");
+
+   //using variable
+    let age  =  294593;
+    pealn!("Name:[yellow](John Doe)\nAge:[(218, 66, 245)]({})" , age);   
 }
 ```
 ---
