@@ -1,8 +1,8 @@
-use Peacock::{ pealn};
+use Peacock::pealn;
 
 
 fn main() {
-      // Example usage of pealn macro
-      pealn!("Name:[yellow](Subham Shaw)\nAge:[(218, 66, 245)](23)");
+      //using predefined and RGB color
+      pealn!("Name:[yellow](John Doe)\nAge:[(218, 66, 245)](23)");
       
 }
