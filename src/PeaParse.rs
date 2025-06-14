@@ -6,6 +6,7 @@ use std::fmt;
 pub struct PeaParsed {
      pub startIndex: usize,
      pub endIndex: usize,
+     pub fullMatch: String, // Full match string
      pub modifier:String,
      pub value: String
 }
