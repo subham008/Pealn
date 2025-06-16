@@ -1,5 +1,7 @@
 #![allow(non_snake_case)]
 
+use core::fmt;
+
 
 #[allow(non_snake_case)]
 #[derive(Debug, Clone, Copy , PartialEq)]
@@ -30,6 +32,14 @@ impl PeaStyle {
             PeaStyle::RESET        => 0, // Default style
         }
     }
+}
+
+impl fmt::Display for PeaStyle {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let code = self.get_code();
+        write!(f, " {} ", code)
+    }
+    
 }
 
 impl std::convert::From<&str> for  PeaStyle{

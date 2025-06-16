@@ -1,17 +1,21 @@
 use regex::Regex;
 
+use std::fmt;
 use crate::pea_compiled::pea_styles::PeaStyle;
 
 pub mod pea_color;
 pub mod pea_styles;
 
 
+#[derive(Debug, Clone)]
 pub struct PeaCompiled {
     pub modifier: String,
     pub foreground: Option<(u8, u8, u8)>, // RGB values for foreground color
     pub background: Option<(u8, u8, u8)>, // RGB values for background color
     pub styles: Vec<pea_styles::PeaStyle>,
 }
+
+
 
 impl PeaCompiled {
     pub fn from_modifier(modifier:&String) -> Self {
@@ -30,28 +34,34 @@ impl PeaCompiled {
    
         //firt two argumeny are colors, then styles :  [foreground, background, styles...]
         for arg in args {
-
-
+          
            //color set  
-           if foreground.is_none() || background.is_none(){
+          let mut  color:Option<(u8,u8,u8)> = None;
 
-                let color = match pea_color::PeaColor::from(arg.as_str()).rgb()  {
-                   Ok(rgb) => Some(rgb),
-                   Err(_) => None, // Skip if not a valid color
-                };
+          if background.is_none() || foreground.is_none(){
+              match pea_color::PeaColor::from(arg.as_str()).rgb() {
+                  Ok(rgb) => { color = Some(rgb); },
+                  Err(_)=>{ color = None; }
+              }
+          }
 
-                if foreground.is_none() {
-                    foreground = color;
-                }else{
-                    background = color;
-                }
-           }
-             
-            //now extrcating styles
-           let style =  PeaStyle::from(arg.as_str());
+            if foreground.is_none() && color.is_some() {
+                foreground = color;
+            }
+            else if background.is_none() && color.is_some() {
+                background = color;
+             }
+            else 
+            {
+                //now extrcating styles
+              let style =  PeaStyle::from(arg.as_str());
               if style  !=  PeaStyle::RESET {
                 styles.push(style);
               }
+            
+           }
+             
+           
 
         }
        

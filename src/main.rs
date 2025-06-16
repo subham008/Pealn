@@ -1,12 +1,14 @@
-use Peacock::{pealn};
+use peacock::{pealn};
 mod pea_compiled;
 
 fn main() {
 
     let name  = "Subham Shaw";
-   // let age = 89;
+    let age = 25;
 
-    pealn!("[yelllow](Name) : [bold,(45,67,34), underline]({}) " , name )
+    pealn!("[yellow, bold](Name) : [bold]({}) " , name );
+    
+    pealn!("[yellow, bold](Age) : [bold]({}) " , age );
 
 }
 

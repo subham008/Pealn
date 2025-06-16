@@ -80,18 +80,20 @@ fn parse_peacock_format(input: &str) -> String {
     
     for parsed in &parse_list {
        
-       let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier);
+        let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier);
 
-
-        let style_vec : Vec<PeaStyle> = pea_compiled.styles;
-        let pea_styles =get_codes(&style_vec);
+        let pea_styles = get_codes(&pea_compiled.styles);
+        
+        println!(" Styles: {}", pea_compiled.styles.len());
 
         let (r,g,b) =match pea_compiled.foreground {
             Some((r, g, b)) => (r, g, b),
-            None => (255,255,255), // panic if the color is invalid
+            None => (255,255,255) , // panic if the color is invalid
         };
 
-        formatted_result.push((parsed ,format!("\x1b[{};38;2;{};{};{}m{}\x1b[0m",pea_styles ,r, g, b, parsed.value)));
+        let formatted_string = format!("\x1b[{};38;2;{};{};{}m{}\x1b[0m",pea_styles ,r, g, b, parsed.value);
+
+        formatted_result.push((parsed ,formatted_string));
     }
 
 
