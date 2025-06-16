@@ -4,7 +4,7 @@ pub mod pea_parse;
 pub mod pea_compiled;
 
 use crate::pea_compiled::PeaCompiled;
-use crate::pea_compiled::pea_styles::{PeaStyle , get_codes};
+use crate::pea_compiled::pea_styles::{ get_codes};
 
 #[macro_export]
 macro_rules! pealn {
@@ -80,11 +80,9 @@ fn parse_peacock_format(input: &str) -> String {
     
     for parsed in &parse_list {
        
-        let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier);
+        let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier ,&parsed.fullMatch);
 
         let pea_styles = get_codes(&pea_compiled.styles);
-        
-        println!(" Styles: {}", pea_compiled.styles.len());
 
         let (r,g,b) =match pea_compiled.foreground {
             Some((r, g, b)) => (r, g, b),

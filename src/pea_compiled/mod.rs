@@ -17,8 +17,25 @@ pub struct PeaCompiled {
 
 
 
+fn panic_peacock_error(arg: &str, code: &str) {
+    // ANSI escape codes for colors
+    let red = "\x1b[38;2;255;0;0m";
+    let yellow = "\x1b[38;2;255;255;0m";
+    let cyan = "\x1b[38;2;0;255;255m";
+    let reset = "\x1b[0m";
+
+    panic!(
+        "{}peacock error{}: {}invalid argument{} {}` {} `{} {}at{} {}{}{}",
+        red, reset,
+        yellow, reset,
+        cyan, arg, reset,
+        yellow, reset,
+        cyan, code, reset
+    );
+}
+
 impl PeaCompiled {
-    pub fn from_modifier(modifier:&String) -> Self {
+    pub fn from_modifier(modifier:&String , full_code:&String) -> Self {
 
         //now modifier will be compiled to get colors and styles
         let re = Regex::new(r"\([^)]+\)|\b[a-zA-Z_]+\b").unwrap();
@@ -35,7 +52,7 @@ impl PeaCompiled {
         //firt two argumeny are colors, then styles :  [foreground, background, styles...]
         for arg in args {
           
-           //color set  
+          //color set  
           let mut  color:Option<(u8,u8,u8)> = None;
 
           if background.is_none() || foreground.is_none(){
@@ -53,17 +70,18 @@ impl PeaCompiled {
              }
             else 
             {
-                //now extrcating styles
+                //now extracting styles
               let style =  PeaStyle::from(arg.as_str());
               if style  !=  PeaStyle::RESET {
                 styles.push(style);
               }
+              else {
+                  panic_peacock_error(&arg, &full_code);
+              }
             
            }
-             
-           
-
-        }
+            
+        } //end of loop
        
 
         PeaCompiled {
