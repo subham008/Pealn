@@ -2,7 +2,7 @@
 
 
 #[allow(non_snake_case)]
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy , PartialEq)]
 pub enum PeaStyle{
     BOLD,
     DIM,
@@ -14,6 +14,7 @@ pub enum PeaStyle{
     STRIKETHROUGH,
     RESET,
 }
+
 
 impl PeaStyle {
     pub fn get_code(&self) -> u8 {

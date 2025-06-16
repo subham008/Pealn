@@ -1,11 +1,10 @@
-
 use regex::Regex;
 
 pub mod pea_parse;
 pub mod pea_compiled;
 
-use crate::pea_compiled::pea_color::PeaColor;
-use crate::pea_compiled::pea_styles::{PeaStyle ,parse_pea_style , get_codes};
+use crate::pea_compiled::PeaCompiled;
+use crate::pea_compiled::pea_styles::{PeaStyle , get_codes};
 
 #[macro_export]
 macro_rules! pealn {
@@ -80,13 +79,16 @@ fn parse_peacock_format(input: &str) -> String {
     let mut formatted_result:Vec<(&pea_parse::PeaParsed ,String)> = Vec::new();
     
     for parsed in &parse_list {
-        let pea_foreground_color = PeaColor::from(parsed.modifier.as_str());
-        let style_vec : Vec<PeaStyle> =parse_pea_style(&parsed.modifier);
+       
+       let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier);
+
+
+        let style_vec : Vec<PeaStyle> = pea_compiled.styles;
         let pea_styles =get_codes(&style_vec);
 
-        let (r,g,b) =match pea_foreground_color.rgb() {
-            Ok((r, g, b)) => (r, g, b),
-            Err(err) => (255,255,255), // panic if the color is invalid
+        let (r,g,b) =match pea_compiled.foreground {
+            Some((r, g, b)) => (r, g, b),
+            None => (255,255,255), // panic if the color is invalid
         };
 
         formatted_result.push((parsed ,format!("\x1b[{};38;2;{};{};{}m{}\x1b[0m",pea_styles ,r, g, b, parsed.value)));
