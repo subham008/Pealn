@@ -1,7 +1,6 @@
 #![allow(non_snake_case)]
 
 
-
 #[allow(non_snake_case)]
 #[derive(Debug, Clone, Copy)]
 pub enum PeaStyle{
@@ -46,4 +45,32 @@ impl std::convert::From<&str> for  PeaStyle{
             _              => PeaStyle::RESET, // Default to RESET if no match
         }
     }   
+}
+
+
+
+pub fn parse_pea_style(input: &str) -> Vec<PeaStyle> {
+   let re_word = regex::Regex::new(r"\b[a-zA-Z_]+\b").unwrap();
+    let re_rgb = regex::Regex::new(r"\(\d{1,3},\d{1,3},\d{1,3}\)").unwrap();
+
+    let mut styles = Vec::new();
+
+    for mat in re_word.find_iter(input) {
+        let word = mat.as_str();
+        if !re_rgb.is_match(word) {
+            styles.push(PeaStyle::from(word));
+        }
+    }
+
+    styles
+}
+
+
+pub fn get_codes(styles: &Vec<PeaStyle>) -> String {
+   
+    let mut codes = Vec::new();
+    for style in styles {
+        codes.push(style.get_code().to_string());
+    }
+    codes.join(";")
 }
