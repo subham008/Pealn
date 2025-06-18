@@ -83,8 +83,6 @@ fn parse_peacock_format(input: &str) -> String {
         let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier ,&parsed.fullMatch);
 
         let pea_styles = get_codes(&pea_compiled.styles);
-
-
         
         let background_colored = match pea_compiled.background {
             Some((r, g, b)) => {
@@ -93,15 +91,15 @@ fn parse_peacock_format(input: &str) -> String {
             None => "".to_string(), // Default to black if no background color is set
         };
         
-        let foreground_colored = match pea_compiled.background {
+        let foreground_colored = match pea_compiled.foreground {
             Some((r, g, b)) => {
                 format!("38;2;{};{};{}", r, g, b)
             },
             None => "".to_string(), // Default to black if no background color is set
         };
-        
 
-        let formatted_string = format!("\x1b[{};{};{}m{}\x1b[0m",pea_styles ,background_colored,foreground_colored, parsed.value);
+                                             //peastyels | ; is FG exists| foreground | ; if BG exists | background | text
+        let formatted_string = format!("\x1b[{}{}{}{}{}m{}\x1b[0m",pea_styles,if pea_compiled.foreground.is_some(){";"}else{""} ,foreground_colored,if pea_compiled.background.is_some(){";"}else{""} ,background_colored, parsed.value);
 
         formatted_result.push((parsed ,formatted_string));
     }
