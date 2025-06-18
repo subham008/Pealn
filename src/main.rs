@@ -6,9 +6,9 @@ fn main() {
     let name  = "Subham Shaw";
     let age = 25;
 
-    pealn!("[yellow,bold](Name) : [bold,red,italic,strikethrough,blue]({}) " , name );
+    pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
     
-    pealn!("[yellow,bold](Age) : [bold,strikethrough]({}) " , age );
+    pealn!("[yellow,bold](Age) : [bold]({}) " , age );
 
 }
 
