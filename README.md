@@ -1,6 +1,6 @@
-# Peacock
+# Pealn
 
-**Peacock** is a Rust library for **printing coloured text** to make your CLI app  beautiful as a Peacock
+**Pealn** is a Rust library for **printing coloured text** to make your CLI app  beautiful as a Peacock
 
 ## Features
 
@@ -10,16 +10,16 @@
 
 ## Installation
 
-Add Peacock to your Cargo.toml:
+Add Pealn to your Cargo.toml:
 
 ```toml
 [dependencies]
-peacock = "0.1"
+pealn = "0.1"
 ```
 
 Add Peacock using Cargo CLI:
 ```
-cargo add Peacock
+cargo add Pealn
 ```
 Available macros to print colored and styled text
 
@@ -47,7 +47,7 @@ print new line  with colored and styles
  
  To print text with foreground
  ```rust
- use peacock::{pealn};
+ use pealn::{pealn};
  pealn!("[yellow](Hello) [green](World)!");
  let name  = "Subham Shaw";
  pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
@@ -56,26 +56,26 @@ print new line  with colored and styles
  you can use RGB color 
 
 ```rust
- use peacock::{pealn};
+ use pealn::{pealn};
  pealn!("[(25,45,78)](Hello) [(34,67,78)](World)!");
  ```
 
  To print text with foreground and background
  ```rust
- use peacock::{pealn};
+ use pealn::{pealn};
  pealn!("[yellow,white](Hello) [green,white](World)!");
  ```
  
  To print text with styles
  ```rust
- use peacock::{pealn};
+ use pealn::{pealn};
  
  pealn!("[bold,underline](Hello) [italic](World)!");
  ```
  
  To print text with color and styles
  ```rust
- use peacock::{pealn};
+ use pealn::{pealn};
  //here order of colors and styles does not matter, 
  //first color will be used as foreground and second as background
  pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
