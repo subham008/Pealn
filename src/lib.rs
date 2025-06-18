@@ -84,12 +84,24 @@ fn parse_peacock_format(input: &str) -> String {
 
         let pea_styles = get_codes(&pea_compiled.styles);
 
-        let (r,g,b) =match pea_compiled.foreground {
-            Some((r, g, b)) => (r, g, b),
-            None => (255,255,255) , // panic if the color is invalid
-        };
 
-        let formatted_string = format!("\x1b[{};38;2;{};{};{}m{}\x1b[0m",pea_styles ,r, g, b, parsed.value);
+        
+        let background_colored = match pea_compiled.background {
+            Some((r, g, b)) => {
+                format!("48;2;{};{};{}", r, g, b)
+            },
+            None => "".to_string(), // Default to black if no background color is set
+        };
+        
+        let foreground_colored = match pea_compiled.background {
+            Some((r, g, b)) => {
+                format!("38;2;{};{};{}", r, g, b)
+            },
+            None => "".to_string(), // Default to black if no background color is set
+        };
+        
+
+        let formatted_string = format!("\x1b[{};{};{}m{}\x1b[0m",pea_styles ,background_colored,foreground_colored, parsed.value);
 
         formatted_result.push((parsed ,formatted_string));
     }
