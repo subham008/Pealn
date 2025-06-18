@@ -1,5 +1,5 @@
 [package]
-name = "peacock"
+name = "pealn"
 version = "0.1.0"
 authors = ["Subham Shaw , India <shaw.subham14.05.2002@gmail.com>"]
 description = "A simple and Easy macro to print colored and styled text to console"

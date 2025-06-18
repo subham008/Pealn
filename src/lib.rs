@@ -25,7 +25,7 @@ use crate::pea_compiled::pea_styles::{ get_codes};
 /// 
 /// To print text with foreground
 /// ```
-/// use peacock::{pealn};
+/// use pealn::{pealn};
 /// pealn!("[yellow](Hello) [green](World)!");
 /// let name  = "Subham Shaw";
 /// pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
@@ -33,20 +33,20 @@ use crate::pea_compiled::pea_styles::{ get_codes};
 /// 
 /// To print text with foreground and background
 /// ```
-/// use peacock::{pealn};
+/// use pealn::{pealn};
 /// pealn!("[yellow,white](Hello) [green,white](World)!");
 /// ```
 /// 
 /// To print text with styles
 /// ```
-/// use peacock::{pealn};
+/// use pealn::{pealn};
 /// 
 /// pealn!("[bold,underline](Hello) [italic](World)!");
 /// ```
 /// 
 /// To print text with color and styles
 /// ```
-/// use peacock::{pealn};
+/// use pealn::{pealn};
 /// //here order of colors and styles does not matter, 
 /// //first color will be used as foreground and second as background
 /// pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
@@ -89,7 +89,7 @@ macro_rules! pealn {
 /// 
 /// To print text with foreground
 /// ```
-/// use peacock::{pealn};
+/// use pealn::{pealn};
 /// pealn!("[yellow](Hello) [green](World)!");
 /// let name  = "Subham Shaw";
 /// pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
@@ -97,20 +97,20 @@ macro_rules! pealn {
 /// 
 /// To print text with foreground and background
 /// ```
-/// use peacock::{pealn};
+/// use pealn::{pealn};
 /// pealn!("[yellow,white](Hello) [green,white](World)!");
 /// ```
 /// 
 /// To print text with styles
 /// ```
-/// use peacock::{pealn};
+/// use pealn::{pealn};
 /// 
 /// pealn!("[bold,underline](Hello) [italic](World)!");
 /// ```
 /// 
 /// To print text with color and styles
 /// ```
-/// use peacock::{pealn};
+/// use pealn::{pealn};
 /// //here order of colors and styles does not matter, 
 /// //first color will be used as foreground and second as background
 /// pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");

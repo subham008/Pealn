@@ -1,4 +1,4 @@
-use peacock::{pealn};
+use pealn::{pealn};
 mod pea_compiled;
 
 fn main() {
