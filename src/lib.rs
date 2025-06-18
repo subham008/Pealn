@@ -131,6 +131,8 @@ macro_rules! pea {
 
 }
 
+/// Prints the formatted string to the console.
+/// If `ln` is true, it prints with a newline at the end; otherwise, it prints without a newline.
 pub fn peacock_impl(input: &str , ln:bool) {
     let output = parse_peacock_format(input);
     if  ln {
