@@ -1,10 +1,56 @@
 use regex::Regex;
 
-pub mod pea_parse;
-pub mod pea_compiled;
+mod pea_parse;
+mod pea_compiled;
 
 use crate::pea_compiled::PeaCompiled;
 use crate::pea_compiled::pea_styles::{ get_codes};
+
+
+///
+///print new line  with colored and styles
+/// ## Format
+/// 
+/// [[foreground,background,styles....]](text)
+/// 
+/// ### Available Colors 
+/// red, green, blue, yellow, cyan, magenta, black, white
+/// 
+/// 
+/// ### Available Styles 
+/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
+/// 
+/// 
+/// ## Examples
+/// 
+/// To print text with foreground
+/// ```
+/// use peacock::{pealn};
+/// pealn!("[yellow](Hello) [green](World)!");
+/// let name  = "Subham Shaw";
+/// pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
+/// ```
+/// 
+/// To print text with foreground and background
+/// ```
+/// use peacock::{pealn};
+/// pealn!("[yellow,white](Hello) [green,white](World)!");
+/// ```
+/// 
+/// To print text with styles
+/// ```
+/// use peacock::{pealn};
+/// 
+/// pealn!("[bold,underline](Hello) [italic](World)!");
+/// ```
+/// 
+/// To print text with color and styles
+/// ```
+/// use peacock::{pealn};
+/// //here order of colors and styles does not matter, 
+/// //first color will be used as foreground and second as background
+/// pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+/// ```
 
 #[macro_export]
 macro_rules! pealn {
@@ -23,6 +69,52 @@ macro_rules! pealn {
 }
 
 
+
+
+///
+///print on same line  with colored and styles
+/// ## Format
+/// 
+/// [[foreground,background,styles....]](text)
+/// 
+/// ### Available Colors 
+/// red, green, blue, yellow, cyan, magenta, black, white
+/// 
+/// 
+/// ### Available Styles 
+/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
+/// 
+/// 
+/// ## Examples
+/// 
+/// To print text with foreground
+/// ```
+/// use peacock::{pealn};
+/// pealn!("[yellow](Hello) [green](World)!");
+/// let name  = "Subham Shaw";
+/// pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
+/// ```
+/// 
+/// To print text with foreground and background
+/// ```
+/// use peacock::{pealn};
+/// pealn!("[yellow,white](Hello) [green,white](World)!");
+/// ```
+/// 
+/// To print text with styles
+/// ```
+/// use peacock::{pealn};
+/// 
+/// pealn!("[bold,underline](Hello) [italic](World)!");
+/// ```
+/// 
+/// To print text with color and styles
+/// ```
+/// use peacock::{pealn};
+/// //here order of colors and styles does not matter, 
+/// //first color will be used as foreground and second as background
+/// pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+/// ```
 #[macro_export]
 macro_rules! pea {
     // Handle format string with arguments

@@ -8,7 +8,7 @@
 - **Pre defined Colors** Common colors  are already defined
 - **Use RGB colors** Apply colors using RGB value
 
-## Usage
+## Installation
 
 Add Peacock to your Cargo.toml:
 
@@ -21,21 +21,65 @@ Add Peacock using Cargo CLI:
 ```
 cargo add Peacock
 ```
-
-### Example
+Available macros to print colored and styled text
 
 ```rust
-use peacock::pealn;
-
-fn main() {
-    //using predefined and RGB color
-    pealn!("Name:[yellow](John Doe)\nAge:[(218, 66, 245)](23)");
-
-   //using variable
-    let age  =  294593;
-    pealn!("Name:[yellow](John Doe)\nAge:[(218, 66, 245)]({})" , age);   
-}
+pea!("hello world"); // to print on same line
+pealn!("hello world"); // to print on next line
 ```
+
+
+print new line  with colored and styles
+## Format
+
+```rust
+[foreground,background,styles....](text) 
+```
+
+### Available Colors 
+ red, green, blue, yellow, cyan, magenta, black, white
+  
+### Available Styles 
+ bold, dim, italic, underline, blink, reverse, hidden, strikethrough
+
+ 
+## Examples
+ 
+ To print text with foreground
+ ```rust
+ use peacock::{pealn};
+ pealn!("[yellow](Hello) [green](World)!");
+ let name  = "Subham Shaw";
+ pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
+ ```
+
+ you can use RGB color 
+
+```rust
+ use peacock::{pealn};
+ pealn!("[(25,45,78)](Hello) [(34,67,78)](World)!");
+ ```
+
+ To print text with foreground and background
+ ```rust
+ use peacock::{pealn};
+ pealn!("[yellow,white](Hello) [green,white](World)!");
+ ```
+ 
+ To print text with styles
+ ```rust
+ use peacock::{pealn};
+ 
+ pealn!("[bold,underline](Hello) [italic](World)!");
+ ```
+ 
+ To print text with color and styles
+ ```rust
+ use peacock::{pealn};
+ //here order of colors and styles does not matter, 
+ //first color will be used as foreground and second as background
+ pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+ ```
 ---
 
 *Peacock makes your CLI apps more colorful and expressive!*

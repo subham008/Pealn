@@ -1,7 +1,11 @@
 [package]
 name = "peacock"
 version = "0.1.0"
+authors = ["Subham Shaw , India <shaw.subham14.05.2002@gmail.com>"]
+description = "A simple and Easy macro to print colored and styled text to console"
+repository = "https://github.com/subham008/Peacock"
+license = "MIT"
 edition = "2024"
-
+readme = "README.md"
 [dependencies]
 regex = "1.11.1"
