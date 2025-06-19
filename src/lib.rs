@@ -75,7 +75,7 @@ macro_rules! pealn {
 ///print on same line  with colored and styles
 /// ## Format
 /// 
-/// [[foreground,background,styles....]](text)
+/// \[foreground,background,styles....]\(text)
 /// 
 /// ### Available Colors 
 /// red, green, blue, yellow, cyan, magenta, black, white

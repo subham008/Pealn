@@ -6,6 +6,7 @@
 
 - **Easy to use** Apply modification inside string
 - **Pre defined Colors** Common colors  are already defined
+- **Text Styles** Add Styles like , bold,italic,underline and more
 - **Use RGB colors** Apply colors using RGB value
 
 ## Installation
