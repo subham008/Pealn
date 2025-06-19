@@ -1,6 +1,5 @@
 use regex::Regex;
 
-use std::fmt;
 use crate::pea_compiled::pea_styles::PeaStyle;
 
 pub mod pea_color;
@@ -25,7 +24,7 @@ fn panic_peacock_error(arg: &str, code: &str) {
     let reset = "\x1b[0m";
 
     panic!(
-        "{}peacock error{}: {}invalid argument{} {}` {} `{} {}at{} {}{}{}",
+        "{}pealn error{}: {}invalid argument{} {}` {} `{} {}at{} {}{}{}",
         red, reset,
         yellow, reset,
         cyan, arg, reset,
