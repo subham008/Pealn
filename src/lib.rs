@@ -20,13 +20,13 @@ use crate::pea_compiled::pea_styles::{ get_codes};
 /// ### Available Styles 
 /// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
 /// 
+/// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
 /// 
 /// To print text with foreground
 /// ```
 /// use pealn::{pealn};
-/// pealn!("[yellow](Hello) [green](World)!");
 /// let name  = "Subham Shaw";
 /// pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
 /// ```
@@ -37,12 +37,20 @@ use crate::pea_compiled::pea_styles::{ get_codes};
 /// pealn!("[yellow,white](Hello) [green,white](World)!");
 /// ```
 /// 
+/// you can use RGB color 
+/// 
+///```rust
+/// use pealn::{pealn};
+/// pealn!("[(25,45,78)](Hello) [(34,67,78)](World)!");
+/// ```
+/// 
 /// To print text with styles
 /// ```
 /// use pealn::{pealn};
 /// 
 /// pealn!("[bold,underline](Hello) [italic](World)!");
 /// ```
+/// 
 /// 
 /// To print text with color and styles
 /// ```
@@ -75,7 +83,7 @@ macro_rules! pealn {
 ///print on same line  with colored and styles
 /// ## Format
 /// 
-/// \[foreground,background,styles....]\(text)
+/// [[foreground,background,styles....]](text)
 /// 
 /// ### Available Colors 
 /// red, green, blue, yellow, cyan, magenta, black, white
@@ -84,36 +92,44 @@ macro_rules! pealn {
 /// ### Available Styles 
 /// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
 /// 
+/// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
 /// 
 /// To print text with foreground
 /// ```
-/// use pealn::{pealn};
-/// pealn!("[yellow](Hello) [green](World)!");
+/// use pealn::{pea};
 /// let name  = "Subham Shaw";
-/// pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
+/// pea!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
 /// ```
 /// 
 /// To print text with foreground and background
 /// ```
-/// use pealn::{pealn};
-/// pealn!("[yellow,white](Hello) [green,white](World)!");
+/// use pealn::{pea};
+/// pea!("[yellow,white](Hello) [green,white](World)!");
+/// ```
+/// 
+/// you can use RGB color 
+/// 
+///```rust
+/// use pealn::{pea};
+/// pea!("[(25,45,78)](Hello) [(34,67,78)](World)!");
 /// ```
 /// 
 /// To print text with styles
 /// ```
-/// use pealn::{pealn};
+/// use pealn::{pea};
 /// 
-/// pealn!("[bold,underline](Hello) [italic](World)!");
+/// pea!("[bold,underline](Hello) [italic](World)!");
 /// ```
+/// 
 /// 
 /// To print text with color and styles
 /// ```
-/// use pealn::{pealn};
+/// use pealn::{pea};
 /// //here order of colors and styles does not matter, 
 /// //first color will be used as foreground and second as background
-/// pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+/// pea!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
 #[macro_export]
 macro_rules! pea {

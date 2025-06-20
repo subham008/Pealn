@@ -43,7 +43,7 @@ print new line  with colored and styles
 ### Available Styles 
  bold, dim, italic, underline, blink, reverse, hidden, strikethrough
 
- 
+### *Note:Some styles are not supported on every console , like blink,reverse and dim 
 ## Examples
  
  To print text with foreground

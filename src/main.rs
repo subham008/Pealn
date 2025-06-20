@@ -1,14 +1,13 @@
-use pealn::{pealn};
-mod pea_compiled;
+use pealn::{pealn,pea};
 
 fn main() {
 
     let name  = "Subham Shaw";
     let age = 25;
 
-    pealn!("[yellow,bold](Name) : [underline]({}) " , name );
+    pea!("[yellow,bold](Name) : [bold,underline]({}) " , name );
     
-    pealn!("[yellow,bold](Age) : [bol]({}) " , age );
+    pealn!("[yellow,bold](Age) : [bold]({}) " , age );
 
 }
 
