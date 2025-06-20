@@ -60,22 +60,6 @@ impl std::convert::From<&str> for  PeaStyle{
 
 
 
-pub fn parse_pea_style(input: &str) -> Vec<PeaStyle> {
-   let re_word = regex::Regex::new(r"\b[a-zA-Z_]+\b").unwrap();
-    let re_rgb = regex::Regex::new(r"\(\d{1,3},\d{1,3},\d{1,3}\)").unwrap();
-
-    let mut styles = Vec::new();
-
-    for mat in re_word.find_iter(input) {
-        let word = mat.as_str();
-        if !re_rgb.is_match(word) {
-            styles.push(PeaStyle::from(word));
-        }
-    }
-
-    styles
-}
-
 
 pub fn get_codes(styles: &Vec<PeaStyle>) -> String {
    
