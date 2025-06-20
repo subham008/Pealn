@@ -7,7 +7,7 @@ fn main() {
 
     pea!("[yellow,bold](Name) : [bold,underline]({}) " , name );
     
-    pealn!("[yellow,bold](Age) : [bold]({}) " , age );
+    pealn!("[yello,bold](Age) : [bold]({}) " , age );
 
 }
 

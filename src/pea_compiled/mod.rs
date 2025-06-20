@@ -8,7 +8,6 @@ pub mod pea_styles;
 
 #[derive(Debug, Clone)]
 pub struct PeaCompiled {
-    pub modifier: String,
     pub foreground: Option<(u8, u8, u8)>, // RGB values for foreground color
     pub background: Option<(u8, u8, u8)>, // RGB values for background color
     pub styles: Vec<pea_styles::PeaStyle>,
@@ -84,7 +83,6 @@ impl PeaCompiled {
        
 
         PeaCompiled {
-            modifier: modifier.clone(),
             foreground:  foreground,
             background: background,
             styles: styles ,
