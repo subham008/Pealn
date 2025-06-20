@@ -1,8 +1,8 @@
 [package]
 name = "pealn"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Subham Shaw , India <shaw.subham14.05.2002@gmail.com>"]
-description = "A simple and Easy macro to print colored and styled text to console"
+description = "simplest way to  print colored and styled text to console"
 repository = "https://github.com/subham008/Peacock"
 license = "MIT"
 edition = "2024"

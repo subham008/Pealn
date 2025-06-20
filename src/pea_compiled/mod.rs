@@ -21,7 +21,7 @@ fn panic_peacock_error(arg: &str, code: &str) {
     let yellow = "\x1b[38;2;255;255;0m";
     let cyan = "\x1b[38;2;0;255;255m";
     let reset = "\x1b[0m";
-
+    
     panic!(
         "{}pealn error{}: {}invalid argument{} {}` {} `{} {}at{} {}{}{}",
         red, reset,
