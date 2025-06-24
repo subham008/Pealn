@@ -1,8 +1,8 @@
 [package]
 name = "pealn"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Subham Shaw , India <shaw.subham14.05.2002@gmail.com>"]
-description = "Intuitive way to print colored and styled text to console , with support for custom colors and styles , using ANSI #terminal #console #colors #text #print #pealn #win #windows #ansi"
+description = "Intuitive way to print colored and styled text to console ,use predefined and RGB colors , use text styles , using ANSI #terminal #console #colors #text #print #pealn #win #windows #ansi"
 repository = "https://github.com/subham008/Peacock"
 license = "MIT"
 edition = "2024"
