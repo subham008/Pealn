@@ -13,6 +13,7 @@ pub enum PeaColor {
     Magenta,
     Black,
     White,
+    Purple,
     RGB (u8, u8, u8), // RGB variant to hold custom RGB values
     None
 }
@@ -28,6 +29,7 @@ impl PeaColor {
             PeaColor::Magenta => Ok((255, 0, 255)),
             PeaColor::Black   => Ok((0, 0, 0)),
             PeaColor::White   => Ok((255, 255, 255)),
+            PeaColor::Purple  => Ok((128, 0, 128)),
             PeaColor::RGB (r,g,b)    =>Ok((r.clone(), g.clone(), b.clone())), // Default RGB value, can be customized
             PeaColor::None    => Err("Invalid color" ), // Default RGB value for None
         }
@@ -47,6 +49,7 @@ impl std::convert::From<&str> for PeaColor {
             "magenta" => PeaColor::Magenta,
             "black"   => PeaColor::Black,
             "white"   => PeaColor::White,
+            "purple"  => PeaColor::Purple,
             _         => {
                 //check if it is an RGB value using regex
                 let re = regex::Regex::new(r"^\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$").unwrap();

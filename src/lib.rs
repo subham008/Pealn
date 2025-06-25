@@ -77,8 +77,6 @@ macro_rules! pealn {
 }
 
 
-
-
 ///
 ///print on same line  with colored and styles
 /// ## Format
