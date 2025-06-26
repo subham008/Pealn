@@ -4,7 +4,7 @@ use crate::pea_compiled::pea_styles::PeaStyle;
 
 pub mod pea_color;
 pub mod pea_styles;
-
+pub mod pea_modifiers;
 
 #[derive(Debug, Clone)]
 pub struct PeaCompiled {

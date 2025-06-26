@@ -212,9 +212,6 @@ fn parse_peacock_format(input: &str) -> String {
         formatted_result.push((parsed ,formatted_string));
     }
 
-
-    
-
     // Replace the original formatted parts in the result string
     for (parsed, formatted) in formatted_result.iter().rev() {
         let start = parsed.startIndex;
