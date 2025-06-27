@@ -59,13 +59,3 @@ impl std::convert::From<&str> for  PeaStyle{
 }
 
 
-
-
-pub fn get_codes(styles: &Vec<PeaStyle>) -> String {
-   
-    let mut codes = Vec::new();
-    for style in styles {
-        codes.push(style.get_code().to_string());
-    }
-    codes.join(";")
-}

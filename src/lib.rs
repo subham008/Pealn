@@ -4,7 +4,7 @@ mod pea_parse;
 mod pea_compiled;
 
 use crate::pea_compiled::PeaCompiled;
-use crate::pea_compiled::pea_styles::{ get_codes};
+
 
 
 ///
@@ -163,7 +163,7 @@ pub fn peacock_impl(input: &str , ln:bool) {
 
 fn parse_peacock_format(input: &str) -> String {
   
-   let mut result = input.to_string();
+    let mut result = input.to_string();
     
     let re = Regex::new(r"\[([^\]]*)\]\(([^)]*)\)").unwrap();
     
@@ -187,30 +187,45 @@ fn parse_peacock_format(input: &str) -> String {
     let mut formatted_result:Vec<(&pea_parse::PeaParsed ,String)> = Vec::new();
     
     for parsed in &parse_list {
+        
+        let mut prefix  = String::new();
+        let mut suffix  = String::new();
        
         let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier ,&parsed.fullMatch);
+        
+        prefix.push_str("\x1b["); // ANSI escape code prefix
+        //add styles to the prefix
+        if !pea_compiled.styles.is_empty() {
+            prefix.push_str(&pea_compiled.get_style_coded());
+        }  
 
-        let pea_styles = get_codes(&pea_compiled.styles);
+        //adding foreground color to the prefix
+
+        if let Some((r, g, b)) = pea_compiled.foreground {
+            if !pea_compiled.styles.is_empty() {
+                prefix.push(';'); // Add a semicolon if styles are present
+            }
+            prefix.push_str(&format!("38;2;{};{};{}", r, g, b));
+        }
+
+        //adding background color to the prefix
+        if let Some((r, g, b)) = pea_compiled.background {
+            if !pea_compiled.styles.is_empty() || pea_compiled.foreground.is_some()  {
+                prefix.push(';'); // Add a semicolon if styles are present
+            }
+            prefix.push_str(&format!("48;2;{};{};{}", r, g, b));
+        }
+        prefix.push('m'); // ANSI escape code suffix
+
+
+        suffix.push_str("\x1b[0m"); // ANSI escape code prefix
         
-        let background_colored = match pea_compiled.background {
-            Some((r, g, b)) => {
-                format!("48;2;{};{};{}", r, g, b)
-            },
-            None => "".to_string(), // Default to black if no background color is set
-        };
-        
-        let foreground_colored = match pea_compiled.foreground {
-            Some((r, g, b)) => {
-                format!("38;2;{};{};{}", r, g, b)
-            },
-            None => "".to_string(), // Default to black if no background color is set
-        };
 
                                              //peastyels | ; is FG exists| foreground | ; if BG exists | background | text
-        let formatted_string = format!("\x1b[{}{}{}{}{}m{}\x1b[0m",pea_styles,if pea_compiled.foreground.is_some(){";"}else{""} ,foreground_colored,if pea_compiled.background.is_some(){";"}else{""} ,background_colored, parsed.value);
+        let formatted_string = format!("{} {} {}", prefix, parsed.value, suffix);
 
         formatted_result.push((parsed ,formatted_string));
-    }
+    } // end of for loop
 
     // Replace the original formatted parts in the result string
     for (parsed, formatted) in formatted_result.iter().rev() {

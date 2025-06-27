@@ -1,6 +1,8 @@
+
+
 use regex::Regex;
 
-use crate::pea_compiled::pea_styles::PeaStyle;
+use crate::pea_compiled::{ pea_styles::PeaStyle};
 
 pub mod pea_color;
 pub mod pea_styles;
@@ -10,7 +12,8 @@ pub mod pea_modifiers;
 pub struct PeaCompiled {
     pub foreground: Option<(u8, u8, u8)>, // RGB values for foreground color
     pub background: Option<(u8, u8, u8)>, // RGB values for background color
-    pub styles: Vec<pea_styles::PeaStyle>,
+    pub styles: Vec<pea_styles::PeaStyle>, // all styles applied
+   // pub modifier:Vec<PeaModifier>, // all modifiers applied
 }
 
 
@@ -89,4 +92,16 @@ impl PeaCompiled {
         }
 
     }
+    
+
+    //it retunrns format : // "1;2;3" for styles
+    pub fn get_style_coded(&self) -> String {
+        
+      let mut codes = Vec::new();
+      for style in self.styles.iter() {
+         codes.push(style.get_code().to_string());
+       }
+       codes.join(";")
+    }
+
 }
