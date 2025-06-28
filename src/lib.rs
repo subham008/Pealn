@@ -14,7 +14,7 @@ use crate::pea_compiled::PeaCompiled;
 /// [[foreground,background,styles....]](text)
 /// 
 /// ### Available Colors 
-/// red, green, blue, yellow, cyan, magenta, black, white
+/// red, green, blue, yellow, cyan, purple , magenta, black, white
 /// 
 /// 
 /// ### Available Styles 
@@ -84,7 +84,7 @@ macro_rules! pealn {
 /// [[foreground,background,styles....]](text)
 /// 
 /// ### Available Colors 
-/// red, green, blue, yellow, cyan, magenta, black, white
+/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
 /// 
 /// 
 /// ### Available Styles 
@@ -193,6 +193,7 @@ fn parse_peacock_format(input: &str) -> String {
        
         let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier ,&parsed.fullMatch);
         
+
         prefix.push_str("\x1b["); // ANSI escape code prefix
         //add styles to the prefix
         if !pea_compiled.styles.is_empty() {
@@ -220,7 +221,12 @@ fn parse_peacock_format(input: &str) -> String {
 
         suffix.push_str("\x1b[0m"); // ANSI escape code prefix
         
-
+        // Process modifiers to get prefix and suffix codes
+        for modifier in &pea_compiled.modifier {
+            let (prefix_code, suffix_code) = modifier.get_codes();
+            prefix.push_str(&prefix_code);
+            suffix.push_str(&suffix_code);
+        }
                                              //peastyels | ; is FG exists| foreground | ; if BG exists | background | text
         let formatted_string = format!("{} {} {}", prefix, parsed.value, suffix);
 

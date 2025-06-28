@@ -14,11 +14,25 @@ pub enum PeaStyle{
     REVERSE,
     HIDDEN,
     STRIKETHROUGH,
-    RESET,
 }
 
 
 impl PeaStyle {
+
+  pub fn from(s: &str) -> Option<Self> {
+        match s.to_lowercase().as_str() {
+            "bold"         => Some(PeaStyle::BOLD),
+            "dim"          => Some(PeaStyle::DIM),
+            "italic"       => Some(PeaStyle::ITALIC),
+            "underline"    => Some(PeaStyle::UNDERLINE),
+            "blink"        => Some(PeaStyle::BLINK),
+            "reverse"      => Some(PeaStyle::REVERSE),
+            "hidden"       => Some(PeaStyle::HIDDEN),
+            "strikethrough"=> Some(PeaStyle::STRIKETHROUGH),
+            _              => None, // Default to RESET if no match
+        }
+    }   
+
     pub fn get_code(&self) -> u8 {
         match self {
             PeaStyle::BOLD         => 1,
@@ -29,10 +43,12 @@ impl PeaStyle {
             PeaStyle::REVERSE      => 7,
             PeaStyle::HIDDEN       => 8,
             PeaStyle::STRIKETHROUGH=> 9,
-            PeaStyle::RESET        => 0, // Default style
+          
         }
     }
 }
+
+
 
 impl fmt::Display for PeaStyle {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -40,22 +56,6 @@ impl fmt::Display for PeaStyle {
         write!(f, " {} ", code)
     }
     
-}
-
-impl std::convert::From<&str> for  PeaStyle{
-        fn from(s: &str) -> Self {
-        match s.to_lowercase().as_str() {
-            "bold"         => PeaStyle::BOLD,
-            "dim"          => PeaStyle::DIM,
-            "italic"       => PeaStyle::ITALIC,
-            "underline"    => PeaStyle::UNDERLINE,
-            "blink"        => PeaStyle::BLINK,
-            "reverse"      => PeaStyle::REVERSE,
-            "hidden"       => PeaStyle::HIDDEN,
-            "strikethrough"=> PeaStyle::STRIKETHROUGH,
-            _              => PeaStyle::RESET, // Default to RESET if no match
-        }
-    }   
 }
 
 

@@ -38,7 +38,7 @@ print new line  with colored and styles
 ```
 
 ### Available Colors 
- red, green, blue, yellow, cyan, magenta, black, white
+ red, green, blue, yellow, cyan,purple , magenta, black, white
   
 ### Available Styles 
  bold, dim, italic, underline, blink, reverse, hidden, strikethrough
