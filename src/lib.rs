@@ -28,7 +28,7 @@ use crate::pea_compiled::PeaCompiled;
 /// ```
 /// use pealn::{pealn};
 /// let name  = "Subham Shaw";
-/// pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
+/// pealn!("[yellow](Name) : [green]({}) " , name );
 /// ```
 /// 
 /// To print text with foreground and background
@@ -36,6 +36,9 @@ use crate::pea_compiled::PeaCompiled;
 /// use pealn::{pealn};
 /// pealn!("[yellow,white](Hello) [green,white](World)!");
 /// ```
+/// 
+/// #### *First defined color will be used as foreground and second as background
+/// 
 /// 
 /// you can use RGB color 
 /// 
@@ -98,7 +101,7 @@ macro_rules! pealn {
 /// ```
 /// use pealn::{pea};
 /// let name  = "Subham Shaw";
-/// pea!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
+/// pea!("[yellow](Name) : [green]({}) " , name );
 /// ```
 /// 
 /// To print text with foreground and background
@@ -106,6 +109,10 @@ macro_rules! pealn {
 /// use pealn::{pea};
 /// pea!("[yellow,white](Hello) [green,white](World)!");
 /// ```
+/// 
+/// 
+/// #### *First defined color will be used as foreground and second as background
+/// 
 /// 
 /// you can use RGB color 
 /// 

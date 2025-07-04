@@ -1,5 +1,5 @@
 
-use pealn::pealn;
+use pealn::{pealn,pea};
 fn main() {
 
     let name  = "Subham Shaw";
@@ -7,7 +7,8 @@ fn main() {
 
     pealn!("[yellow,bold](Name) : [bold,purple]({}) " , name);
     pealn!("[yellow,bold](Age)  : [bold,italic]({}) " , age );
-    pealn!("[yellow,bold](link) : [bold,green,underline,italic](YouTube) " );
+    
+    pea!("[yellow,bold](link) : [bold,green,underline,italic](YouTube) " );
  }
 
 
