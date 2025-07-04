@@ -18,7 +18,7 @@ Add Pealn to your Cargo.toml:
 pealn = "0.1"
 ```
 
-Add Peacock using Cargo CLI:
+Add Pealn using Cargo CLI:
 ```
 cargo add Pealn
 ```
@@ -83,4 +83,4 @@ print new line  with colored and styles
  ```
 ---
 
-*Peacock makes your CLI apps more colorful and expressive!*
+*Pealn makes your CLI apps more colorful and expressive!*

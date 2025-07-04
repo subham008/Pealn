@@ -66,12 +66,12 @@ macro_rules! pealn {
     ($fmt:expr, $($arg:expr),*) => {
         {
             let formatted = format!($fmt, $($arg),*);
-            $crate::peacock_impl(&formatted , true);
+            $crate::pealn_impl(&formatted , true);
         }
     };
     // Handle format string without arguments
     ($msg:expr) => {
-        $crate::peacock_impl($msg , true);
+        $crate::pealn_impl($msg , true);
     };
 
 }
@@ -135,20 +135,20 @@ macro_rules! pea {
     ($fmt:expr, $($arg:expr),*) => {
         {
             let formatted = format!($fmt, $($arg),*);
-            $crate::peacock_impl(&formatted , false);
+            $crate::pealn_impl(&formatted , false);
         }
     };
     // Handle format string without arguments
     ($msg:expr) => {
-        $crate::peacock_impl($msg , false);
+        $crate::pealn_impl($msg , false);
     };
 
 }
 
 /// Prints the formatted string to the console.
 /// If `ln` is true, it prints with a newline at the end; otherwise, it prints without a newline.
-pub fn peacock_impl(input: &str , ln:bool) {
-    let output = parse_peacock_format(input);
+pub fn pealn_impl(input: &str , ln:bool) {
+    let output = parse_pealn_format(input);
     if  ln {
         println!("{}", output);
     } else {
@@ -161,7 +161,7 @@ pub fn peacock_impl(input: &str , ln:bool) {
 
 
 
-fn parse_peacock_format(input: &str) -> String {
+fn parse_pealn_format(input: &str) -> String {
   
     let mut result = input.to_string();
     
