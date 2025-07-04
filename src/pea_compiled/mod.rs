@@ -5,14 +5,12 @@ use regex::Regex;
 
 pub mod pea_color;
 pub mod pea_styles;
-pub mod pea_modifiers;
 
 #[derive(Debug, Clone)]
 pub struct PeaCompiled {
     pub foreground: Option<(u8, u8, u8)>, // RGB values for foreground color
     pub background: Option<(u8, u8, u8)>, // RGB values for background color
     pub styles: Vec<pea_styles::PeaStyle>, // all styles applied
-    pub modifier:Vec<pea_modifiers::PeaModifier>, // all modifiers applied
 }
 
 
@@ -69,12 +67,11 @@ impl PeaCompiled {
         let mut foreground: Option<(u8,u8,u8)> = None;
         let mut background: Option<(u8,u8,u8)> = None;
         let mut styles: Vec<pea_styles::PeaStyle> = Vec::new();
-        let mut modifiers: Vec<pea_modifiers::PeaModifier> = Vec::new();
+       
    
         //firt two argumeny are colors, then styles :  [foreground, background, link(Crates.io) styles...] if something like link is found it will be called as modifier
         for arg in args {
           
-
           if let Some(color) = pea_color::PeaColor::from(arg.as_str()){
                 if foreground.is_none() {
                     foreground = Some(color.rgb());
@@ -89,23 +86,19 @@ impl PeaCompiled {
           else if let Some(style) = pea_styles::PeaStyle::from(arg.as_str()){
                  styles.push(style); 
           }
-          else if let Some(modifier) = pea_modifiers::PeaModifier::from(arg.as_str()){
-                modifiers.push(modifier);
-          }
+        
           else {
                panic_pealn_error( PealnError::InvalidArgument,&arg, &full_code);
           }
 
             
-        } //end of loop
-       
-       
+    } //end of loop
+             
        //TODO  return valid modifiers
         PeaCompiled {
             foreground:  foreground,
             background: background,
             styles: styles ,
-            modifier:modifiers
         }
 
     }

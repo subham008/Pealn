@@ -217,16 +217,8 @@ fn parse_peacock_format(input: &str) -> String {
             prefix.push_str(&format!("48;2;{};{};{}", r, g, b));
         }
         prefix.push('m'); // ANSI escape code suffix
-
-
         suffix.push_str("\x1b[0m"); // ANSI escape code prefix
-        
-        // Process modifiers to get prefix and suffix codes
-        for modifier in &pea_compiled.modifier {
-            let (prefix_code, suffix_code) = modifier.get_codes();
-            prefix.push_str(&prefix_code);
-            suffix.push_str(&suffix_code);
-        }
+    
                                              //peastyels | ; is FG exists| foreground | ; if BG exists | background | text
         let formatted_string = format!("{} {} {}", prefix, parsed.value, suffix);
 
