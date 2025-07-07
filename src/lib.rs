@@ -94,29 +94,16 @@ use crate::pea_compiled::PeaCompiled;
 pub fn pealn(item: TokenStream) -> TokenStream {
      let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
 
+    let pea_code =fmt.value();
+    
+    let formatted = parse_pealn_format(&pea_code);
+
     let expanded = quote! {
-        println!(#fmt, #args);
+        println!(#formatted, #args);
     };
 
     expanded.into()
 }
-
-
-// #[macro_export]
-// macro_rules! pealn {
-//     // Handle format string with arguments
-//     ($fmt:expr, $($arg:expr),*) => {
-//         {
-//             let formatted = format!($fmt, $($arg),*);
-//             $crate::pealn_impl(&formatted , true);
-//         }
-//     };
-//     // Handle format string without arguments
-//     ($msg:expr) => {
-//         $crate::pealn_impl($msg , true);
-//     };
-
-// }
 
 
 ///
@@ -179,46 +166,17 @@ pub fn pealn(item: TokenStream) -> TokenStream {
 
 #[proc_macro]
 pub fn pea(item: TokenStream) -> TokenStream {
-     let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
+    let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
+    
+    let pea_code =fmt.value();
+    
+    let formatted = parse_pealn_format(&pea_code);
 
     let expanded = quote! {
-        println!(#fmt, #args);
+        print!(#formatted, #args);
     };
 
     expanded.into()
-}
-
-
-
-
-
-
-// #[macro_export]
-// macro_rules! pea {
-//     // Handle format string with arguments
-//     ($fmt:expr, $($arg:expr),*) => {
-//         {
-//             let formatted = format!($fmt, $($arg),*);
-//             $crate::pealn_impl(&formatted , false);
-//         }
-//     };
-//     // Handle format string without arguments
-//     ($msg:expr) => {
-//         $crate::pealn_impl($msg , false);
-//     };
-
-// }
-
-/// Prints the formatted string to the console.
-/// If `ln` is true, it prints with a newline at the end; otherwise, it prints without a newline.
- fn pealn_impl(input: &str , ln:bool) {
-    let output = parse_pealn_format(input);
-    if  ln {
-        println!("{}", output);
-    } else {
-        print!("{}", output);
-        
-    }
 }
 
 

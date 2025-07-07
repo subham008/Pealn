@@ -21,31 +21,20 @@ enum PealnError {
 
 
 fn panic_pealn_error(error:PealnError ,arg: &str, code: &str) {
-    // ANSI escape codes for colors
-    let red = "\x1b[38;2;255;0;0m";
-    let yellow = "\x1b[38;2;255;255;0m";
-    let cyan = "\x1b[38;2;0;255;255m";
-    let reset = "\x1b[0m";
-    
+   
     match error {
         PealnError::InvalidArgument => {
             panic!(
-                "{}pealn error{}: {}invalid argument{} {}` {} `{} {}at{} {}{}{}",
-                red, reset,
-                yellow, reset,
-                cyan, arg, reset,
-                yellow, reset,
-                cyan, code, reset
+                "pealn error : invalid argument ` {} ` at {}",
+                 arg,
+                 code
             );
         },
         PealnError::Repeated => {
             panic!(
-                "{}pealn error{}: {}repeated argument{} {}` {} `{} {}at{} {}{}{}",
-                red, reset,
-                yellow, reset,
-                cyan, arg, reset,
-                yellow, reset,
-                cyan, code, reset
+                "pealn error : repeated argument ` {} ` at {}",
+                 arg,
+                 code
             );
         },
         
