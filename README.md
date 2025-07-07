@@ -20,10 +20,10 @@
 **Pealn** is a Rust library for **printing coloured text** to make your CLI app  beautiful as a Peacock
 
 ## Features
-
+- **Compile time** format pealn codes during compile time i,e \[red](name) converted to \x1b\[38;2;255;0;0m name \x1b[0m during compile time
 - **Easy to use** Apply modification inside string
 - **Pre defined Colors** Common colors  are already defined
-- **Text Styles** Add Styles like , bold,italic,underline and more
+- **Text Styles** Add Styles like , bold , italic , underline and more
 - **Use RGB colors** Apply colors using RGB value
 
 ## Installation

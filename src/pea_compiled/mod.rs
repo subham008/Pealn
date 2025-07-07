@@ -24,18 +24,10 @@ fn panic_pealn_error(error:PealnError ,arg: &str, code: &str) {
    
     match error {
         PealnError::InvalidArgument => {
-            panic!(
-                "pealn error : invalid argument ` {} ` at {}",
-                 arg,
-                 code
-            );
+            panic!( "pealn error : invalid argument ` {} ` at {}",  arg,   code  );
         },
         PealnError::Repeated => {
-            panic!(
-                "pealn error : repeated argument ` {} ` at {}",
-                 arg,
-                 code
-            );
+            panic!( "pealn error : repeated argument ` {} ` at {}",  arg,   code   );
         },
         
     }
