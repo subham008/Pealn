@@ -1,8 +1,21 @@
 # Pealn
 
 <p align="center">
-  <img src="res/pealn_icon.png" alt="Pealn Icon" width="320" />
+  <img src="res/pealn_icon.png" alt="Pealn Icon" width="200" />
 </p>
+
+<p align="center">
+  <a href="https://crates.io/crates/pealn">
+    <img src="https://img.shields.io/crates/d/pealn.svg" alt="Crates.io downloads">
+  </a>
+  <a href="https://crates.io/crates/pealn">
+    <img src="https://img.shields.io/crates/v/pealn.svg" alt="Crates.io version">
+  </a>
+  <a href="https://crates.io/crates/pealn">
+    <img src="https://img.shields.io/crates/l/pealn.svg" alt="Crates.io license">
+  </a>
+</p>
+
 
 **Pealn** is a Rust library for **printing coloured text** to make your CLI app  beautiful as a Peacock
 
@@ -19,7 +32,7 @@ Add Pealn to your Cargo.toml:
 
 ```toml
 [dependencies]
-pealn = "0.1"
+pealn = "0.3"
 ```
 
 Add Pealn using Cargo CLI:
