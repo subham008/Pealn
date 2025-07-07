@@ -1,5 +1,9 @@
 # Pealn
 
+<p align="center">
+  <img src="res/pealn_icon.png" alt="Pealn Icon" width="320" />
+</p>
+
 **Pealn** is a Rust library for **printing coloured text** to make your CLI app  beautiful as a Peacock
 
 ## Features
