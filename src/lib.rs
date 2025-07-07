@@ -1,5 +1,31 @@
 use regex::Regex;
 
+use proc_macro::TokenStream;
+use syn::{parse_macro_input, Expr, Token, LitStr, parse::Parse, punctuated::Punctuated};
+use quote::quote;
+
+
+struct PrintlnInput {
+    fmt: LitStr,
+    args: Punctuated<Expr, Token![,]>,
+}
+
+impl Parse for PrintlnInput {
+    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+        let fmt: LitStr = input.parse()?;
+        let mut args = Punctuated::new();
+
+        while input.peek(Token![,]) {
+            let _comma: Token![,] = input.parse()?;
+            let expr: Expr = input.parse()?;
+            args.push(expr);
+        }
+
+        Ok(PrintlnInput { fmt, args })
+    }
+}
+
+
 mod pea_parse;
 mod pea_compiled;
 
@@ -63,21 +89,34 @@ use crate::pea_compiled::PeaCompiled;
 /// pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
 
-#[macro_export]
-macro_rules! pealn {
-    // Handle format string with arguments
-    ($fmt:expr, $($arg:expr),*) => {
-        {
-            let formatted = format!($fmt, $($arg),*);
-            $crate::pealn_impl(&formatted , true);
-        }
-    };
-    // Handle format string without arguments
-    ($msg:expr) => {
-        $crate::pealn_impl($msg , true);
+
+#[proc_macro]
+pub fn pealn(item: TokenStream) -> TokenStream {
+     let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
+
+    let expanded = quote! {
+        println!(#fmt, #args);
     };
 
+    expanded.into()
 }
+
+
+// #[macro_export]
+// macro_rules! pealn {
+//     // Handle format string with arguments
+//     ($fmt:expr, $($arg:expr),*) => {
+//         {
+//             let formatted = format!($fmt, $($arg),*);
+//             $crate::pealn_impl(&formatted , true);
+//         }
+//     };
+//     // Handle format string without arguments
+//     ($msg:expr) => {
+//         $crate::pealn_impl($msg , true);
+//     };
+
+// }
 
 
 ///
@@ -136,25 +175,43 @@ macro_rules! pealn {
 /// //first color will be used as foreground and second as background
 /// pea!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
-#[macro_export]
-macro_rules! pea {
-    // Handle format string with arguments
-    ($fmt:expr, $($arg:expr),*) => {
-        {
-            let formatted = format!($fmt, $($arg),*);
-            $crate::pealn_impl(&formatted , false);
-        }
-    };
-    // Handle format string without arguments
-    ($msg:expr) => {
-        $crate::pealn_impl($msg , false);
+/// 
+
+#[proc_macro]
+pub fn pea(item: TokenStream) -> TokenStream {
+     let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
+
+    let expanded = quote! {
+        println!(#fmt, #args);
     };
 
+    expanded.into()
 }
+
+
+
+
+
+
+// #[macro_export]
+// macro_rules! pea {
+//     // Handle format string with arguments
+//     ($fmt:expr, $($arg:expr),*) => {
+//         {
+//             let formatted = format!($fmt, $($arg),*);
+//             $crate::pealn_impl(&formatted , false);
+//         }
+//     };
+//     // Handle format string without arguments
+//     ($msg:expr) => {
+//         $crate::pealn_impl($msg , false);
+//     };
+
+// }
 
 /// Prints the formatted string to the console.
 /// If `ln` is true, it prints with a newline at the end; otherwise, it prints without a newline.
-pub fn pealn_impl(input: &str , ln:bool) {
+ fn pealn_impl(input: &str , ln:bool) {
     let output = parse_pealn_format(input);
     if  ln {
         println!("{}", output);

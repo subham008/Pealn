@@ -9,5 +9,8 @@ edition = "2024"
 readme = "README.md"
 [dependencies]
 regex = "1.11.1"
-# [lib]
-# proc-macro = true
+syn = { version = "2", features = ["full"] }
+quote = "1.0"
+
+[lib]
+proc-macro = true
