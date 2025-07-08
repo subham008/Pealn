@@ -17,7 +17,20 @@
 </p>
 
 
+
+
 **Pealn** is a Rust library for **printing coloured text** to make your CLI app  beautiful as a Peacock
+
+
+
+
+<p align="center">
+  <img src="res/code_screenshot.png" alt="Pealn Icon" width="500" />
+</p>
+
+<p align="center">
+  <img src="res/result_screenshot.png" alt="Pealn Icon" width="350" />
+</p>
 
 ## Features
 - **Compile time** format pealn codes during compile time i,e \[red](name) converted to \x1b\[38;2;255;0;0m name \x1b[0m during compile time
