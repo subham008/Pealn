@@ -288,11 +288,11 @@ pub fn pealn_write( item: TokenStream) -> TokenStream {
 
 
 ///
-///pealn_writeln! is an alternative to writeln! macro.
-///Writes formatted data into a buffer.
-/// 
-///This macro accepts a 'writer', a format string, and a list of arguments.
-///Arguments will be formatted according to the specified format string and the result will be passed to the writer. 
+///pealn_format! is an alternative to format! macro.
+///Creates a String using interpolation of runtime expressions.
+///The first argument format! receives is a format string. This must be a string literal.
+///  The power of the formatting string is in the {}s contained.
+///  Additional parameters passed to format! replace the {}s within the formatting string in the order given unless named or positional parameters are used.
 /// ## Format
 /// 
 /// [[foreground,background,styles....]](text)
@@ -310,15 +310,15 @@ pub fn pealn_write( item: TokenStream) -> TokenStream {
 /// 
 /// To print text with foreground
 /// ```
-/// use pealn::{pealn_writeln};
+/// use pealn::{pealn_format};
 /// let name  = "Subham Shaw";
-/// pealn_writeln!("[yellow](Name) : [green]({}) " , name );
+/// pealn_format!("[yellow](Name) : [green]({}) " , name );
 /// ```
 /// 
 /// To print text with foreground and background
 /// ```
-/// use pealn::{pealn_writeln};
-/// pealn_writeln!("[yellow,white](Hello) [green,white](World)!");
+/// use pealn::{pealn_format};
+/// pealn_format!("[yellow,white](Hello) [green,white](World)!");
 /// ```
 /// 
 /// #### *First defined color will be used as foreground and second as background
@@ -327,36 +327,36 @@ pub fn pealn_write( item: TokenStream) -> TokenStream {
 /// you can use RGB color 
 /// 
 ///```rust
-/// use pealn::{pealn_writeln};
-/// pealn_writeln!("[(25,45,78)](Hello) [(34,67,78)](World)!");
+/// use pealn::{pealn_format};
+/// pealn_format!("[(25,45,78)](Hello) [(34,67,78)](World)!");
 /// ```
 /// 
 /// To print text with styles
 /// ```
-/// use pealn::{pealn_writeln};
+/// use pealn::{pealn_format};
 /// 
-/// pealn_writeln!("[bold,underline](Hello) [italic](World)!");
+/// pealn_format!("[bold,underline](Hello) [italic](World)!");
 /// ```
 /// 
 /// 
 /// To print text with color and styles
 /// ```
-/// use pealn::{pealn_writeln};
+/// use pealn::{pealn_format};
 /// //here order of colors and styles does not matter, 
 /// //first color will be used as foreground and second as background
-/// pealn_writeln!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+/// pealn_format!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
 #[proc_macro]
-pub fn pealn_writeln(  item: TokenStream) -> TokenStream {
-   let WriteInput { writer, fmt, args } = parse_macro_input!(item as WriteInput);
-
-    let pea_code = fmt.value();
+pub fn pealn_format(  item: TokenStream) -> TokenStream {
+   let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
+    
+    let pea_code =fmt.value();
+    
     let formatted = parse_pealn_format(&pea_code);
 
     let expanded = quote! {
-        writeln!(#writer, #formatted, #args)
+        format!(#formatted, #args)
     };
-
 
     expanded.into()
 }

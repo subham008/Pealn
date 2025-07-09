@@ -1,4 +1,4 @@
-use pealn::{pealn , pealn_writeln};
+use pealn::{pealn , pealn_writeln , pealn_format};
 use std::fmt;
 
 struct Person {
@@ -30,5 +30,10 @@ fn main() {
         phone: String::from("123-456-7890"),
         email: String::from("kanknkcc")};
 
-    println!("Person : {}" , person);
+    pealn!("Person : {}" , person);
+    
+    // Using pealn_format to format a string
+    let formatted_string = pealn_format!("Person : {}" , person);
+    println!("{}", formatted_string);
+
 }
