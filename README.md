@@ -58,13 +58,6 @@ Add Pealn using Cargo CLI:
 ```
 cargo add Pealn
 ```
-Available macros to print colored and styled text
-
-```rust
-pea!("hello world"); // to print on same line
-pealn!("hello world"); // to print on next line
-```
-
 
 print new line  with colored and styles
 ## Format
@@ -87,7 +80,7 @@ print new line  with colored and styles
 | Black     | <span style="color:#000000;">■</span> | `[black](text)`      |
 | White     | <span style="color:#ffffff;">■</span> | `[white](text)`      |
 
-> *Note: Color preview may not render on crates.io, but will on GitHub.*
+> *Note: Color preview may not render*
 
 ---
 
@@ -130,7 +123,8 @@ print new line  with colored and styles
  use pealn::{pealn};
  pealn!("[yellow,white](Hello) [green,white](World)!");
  ```
- 
+ > **First color** defined is always considers as **foreground** and **second color** as **background** color, even if you put style in middle it will behave same 
+
  To print text with styles
  ```rust
  use pealn::{pealn};
@@ -143,7 +137,7 @@ print new line  with colored and styles
  use pealn::{pealn};
  //here order of colors and styles does not matter, 
  //first color will be used as foreground and second as background
- pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+ pealn!("[red,green,bold,underline](Hello) [yellow,italic,white](World)!");
  ```
 ---
 
