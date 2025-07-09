@@ -17,8 +17,6 @@
 </p>
 
 
-
-
 **Pealn** is a Rust library for **printing coloured text** to make your CLI app  beautiful as a Peacock
 
 
@@ -38,6 +36,14 @@
 - **Pre defined Colors** Common colors  are already defined
 - **Text Styles** Add Styles like , bold , italic , underline and more
 - **Use RGB colors** Apply colors using RGB value
+
+
+## Pealn is an Alternative
+
+| Traditional Rust Macro | Pealn Macro Alternative |
+|------------------------|------------------------|
+| `print!()`             | `pea!()`               |
+| `println!()`           | `pealn!()`             |
 
 ## Installation
 
