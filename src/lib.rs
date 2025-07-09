@@ -279,7 +279,7 @@ pub fn pealn_write( item: TokenStream) -> TokenStream {
     let formatted = parse_pealn_format(&pea_code);
 
     let expanded = quote! {
-        write!(#writer, #formatted, #args);
+        write!(#writer, #formatted, #args)
     };
 
     expanded.into()
@@ -354,7 +354,7 @@ pub fn pealn_writeln(  item: TokenStream) -> TokenStream {
     let formatted = parse_pealn_format(&pea_code);
 
     let expanded = quote! {
-        writeln!(#writer, #formatted, #args);
+        writeln!(#writer, #formatted, #args)
     };
 
 
