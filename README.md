@@ -73,11 +73,39 @@ print new line  with colored and styles
 [foreground,background,styles....](text) 
 ```
 
-### Available Colors 
- red, green, blue, yellow, cyan,purple , magenta, black, white
-  
-### Available Styles 
- bold, dim, italic, underline, blink, reverse, hidden, strikethrough
+## 🎨 Available Colors
+
+| Name      | Preview                          | Example Code         |
+|-----------|----------------------------------|----------------------|
+| Red       | <span style="color:#ff0000;">■</span> | `[red](text)`        |
+| Green     | <span style="color:#00ff00;">■</span> | `[green](text)`      |
+| Blue      | <span style="color:#0000ff;">■</span> | `[blue](text)`       |
+| Yellow    | <span style="color:#ffff00;">■</span> | `[yellow](text)`     |
+| Cyan      | <span style="color:#00ffff;">■</span> | `[cyan](text)`       |
+| Purple    | <span style="color:#800080;">■</span> | `[purple](text)`     |
+| Magenta   | <span style="color:#ff00ff;">■</span> | `[magenta](text)`    |
+| Black     | <span style="color:#000000;">■</span> | `[black](text)`      |
+| White     | <span style="color:#ffffff;">■</span> | `[white](text)`      |
+
+> *Note: Color preview may not render on crates.io, but will on GitHub.*
+
+---
+
+## ✨ Available Styles
+
+| Style          | Example Code         | Description                  |
+|----------------|---------------------|------------------------------|
+| Bold           | `[bold](text)`      | **Bold text**                |
+| Dim            | `[dim](text)`       | Dim/faint text               |
+| Italic         | `[italic](text)`    | *Italic text*                |
+| Underline      | `[underline](text)` | <u>Underlined text</u>       |
+| Blink          | `[blink](text)`     | Blinking text (not always supported) |
+| Reverse        | `[reverse](text)`   | Reverse video                |
+| Hidden         | `[hidden](text)`    | Hidden text                  |
+| Strikethrough  | `[strikethrough](text)` | ~~Strikethrough~~           |
+
+> *Some styles may not be supported in all terminals.*
+
 
 ### *Note:Some styles are not supported on every console , like blink,reverse and dim 
 ## Examples
