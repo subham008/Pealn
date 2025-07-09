@@ -1,4 +1,4 @@
-use pealn::{pealn , pealn_writeln , pealn_format};
+use pealn::{pealn , pealn_writeln , pealn_format , pealn_eprint};
 use std::fmt;
 
 struct Person {
@@ -29,11 +29,16 @@ fn main() {
         age: 30,
         phone: String::from("123-456-7890"),
         email: String::from("kanknkcc")};
-
+   
+    // testing pealn macro to print on same line
     pealn!("Person : {}" , person);
     
-    // Using pealn_format to format a string
+    // testing pealn_format to format a string
     let formatted_string = pealn_format!("Person : {}" , person);
     println!("{}", formatted_string);
+
+
+    // testing pealn_writeln macro to print on new line
+    pealn_eprint!("[red](This is a test of pealn_writeln macro.)");
 
 }

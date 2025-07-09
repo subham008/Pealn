@@ -31,7 +31,7 @@ mod pea_compiled;
 use crate::pea_compiled::PeaCompiled;
 
 
-///
+///pealn! is an alternative to println! macro.
 ///print new line  with colored and styles
 /// ## Format
 /// 
@@ -104,7 +104,7 @@ pub fn pealn(item: TokenStream) -> TokenStream {
 }
 
 
-///
+///pea! is an alternative to print! macro.
 ///print on same line  with colored and styles
 /// ## Format
 /// 
@@ -178,6 +178,156 @@ pub fn pea(item: TokenStream) -> TokenStream {
 
 
 
+
+///pealn_eprint! is an alternative to eprint! macro.
+///print error  on same line  with colored and styles
+/// ## Format
+/// 
+/// [[foreground,background,styles....]](text)
+/// 
+/// ### Available Colors 
+/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
+/// 
+/// 
+/// ### Available Styles 
+/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
+/// 
+/// #### *Some Styles are not supported in all terminals
+/// 
+/// ## Examples
+/// 
+/// To print text with foreground
+/// ```
+/// use pealn::{pealn_eprint};
+/// let name  = "Subham Shaw";
+/// pealn_eprint!("[yellow](Name) : [green]({}) " , name );
+/// ```
+/// 
+/// To print text with foreground and background
+/// ```
+/// use pealn::{pealn_eprint};
+/// pealn_eprint!("[yellow,white](Hello) [green,white](World)!");
+/// ```
+/// 
+/// 
+/// #### *First defined color will be used as foreground and second as background
+/// 
+/// 
+/// you can use RGB color 
+/// 
+///```rust
+/// use pealn::{pealn_eprint};
+/// pealn_eprint!("[(25,45,78)](Hello) [(34,67,78)](World)!");
+/// ```
+/// 
+/// To print text with styles
+/// ```
+/// use pealn::{pealn_eprint};
+/// 
+/// pealn_eprint!("[bold,underline](Hello) [italic](World)!");
+/// ```
+/// 
+/// 
+/// To print text with color and styles
+/// ```
+/// use pealn::{pealn_eprint};
+/// //here order of colors and styles does not matter, 
+/// //first color will be used as foreground and second as background
+/// pealn_eprint!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+/// ```
+/// 
+#[proc_macro]
+pub fn pealn_eprint(item: TokenStream) -> TokenStream {
+    let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
+    
+    let pea_code =fmt.value();
+    
+    let formatted = parse_pealn_format(&pea_code);
+
+    let expanded = quote! {
+        eprint!(#formatted, #args);
+    };
+
+    expanded.into()
+}
+
+
+
+
+
+
+
+///pealn_eprintln! is an alternative to eprintln! macro.
+///print error  on next line  with colored and styles
+/// ## Format
+/// 
+/// [[foreground,background,styles....]](text)
+/// 
+/// ### Available Colors 
+/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
+/// 
+/// 
+/// ### Available Styles 
+/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
+/// 
+/// #### *Some Styles are not supported in all terminals
+/// 
+/// ## Examples
+/// 
+/// To print text with foreground
+/// ```
+/// use pealn::{pealn_eprintln};
+/// let name  = "Subham Shaw";
+/// pealn_eprintln!("[yellow](Name) : [green]({}) " , name );
+/// ```
+/// 
+/// To print text with foreground and background
+/// ```
+/// use pealn::{pealn_eprintln};
+/// pealn_eprintln!("[yellow,white](Hello) [green,white](World)!");
+/// ```
+/// 
+/// 
+/// #### *First defined color will be used as foreground and second as background
+/// 
+/// 
+/// you can use RGB color 
+/// 
+///```rust
+/// use pealn::{pealn_eprintln};
+/// pealn_eprintln!("[(25,45,78)](Hello) [(34,67,78)](World)!");
+/// ```
+/// 
+/// To print text with styles
+/// ```
+/// use pealn::{pealn_eprintln};
+/// 
+/// pealn_eprintln!("[bold,underline](Hello) [italic](World)!");
+/// ```
+/// 
+/// 
+/// To print text with color and styles
+/// ```
+/// use pealn::{pealn_eprintln};
+/// //here order of colors and styles does not matter, 
+/// //first color will be used as foreground and second as background
+/// pealn_eprintln!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+/// ```
+/// 
+#[proc_macro]
+pub fn pealn_eprintln(item: TokenStream) -> TokenStream {
+    let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
+    
+    let pea_code =fmt.value();
+    
+    let formatted = parse_pealn_format(&pea_code);
+
+    let expanded = quote! {
+        eprintln!(#formatted, #args);
+    };
+
+    expanded.into()
+}
 
 
 
@@ -285,6 +435,90 @@ pub fn pealn_write( item: TokenStream) -> TokenStream {
     expanded.into()
 
 }
+
+
+
+
+///
+///pealn_writeln is an alternative to writeln! macro.
+///Writes formatted data into a buffer.
+/// 
+///This macro accepts a 'writer', a format string, and a list of arguments.
+///Arguments will be formatted according to the specified format string and the result will be passed to the writer. 
+/// ## Format
+/// 
+/// [[foreground,background,styles....]](text)
+/// 
+/// ### Available Colors 
+/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
+/// 
+/// 
+/// ### Available Styles 
+/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
+/// 
+/// #### *Some Styles are not supported in all terminals
+/// 
+/// ## Examples
+/// 
+/// To print text with foreground
+/// ```
+/// use pealn::{pealn_writeln};
+/// let name  = "Subham Shaw";
+/// let f = std::io::stdout();
+/// pealn_writeln!(f,"[yellow](Name) : [green]({}) " , name );
+/// ```
+/// 
+/// To print text with foreground and background
+/// ```
+/// use pealn::{pealn_writeln};
+/// let f = std::io::stdout();
+/// pealn_writeln!(f,"[yellow,white](Hello) [green,white](World)!");
+/// ```
+/// 
+/// 
+/// #### *First defined color will be used as foreground and second as background
+/// 
+/// 
+/// you can use RGB color 
+/// 
+///```rust
+/// use pealn::{pealn_writeln};
+/// let f = std::io::stdout();
+/// pealn_writeln!(f,"[(25,45,78)](Hello) [(34,67,78)](World)!");
+/// ```
+/// 
+/// To print text with styles
+/// ```
+/// use pealn::{pealn_writeln};
+/// let f = std::io::stdout();
+/// pealn_writeln!(f,"[bold,underline](Hello) [italic](World)!");
+/// ```
+/// 
+/// 
+/// To print text with color and styles
+/// ```
+/// use pealn::{pealn_writeln};
+/// let f = std::io::stdout();
+/// //here order of colors and styles does not matter, 
+/// //first color will be used as foreground and second as background
+/// pealn_writeln!(f,"[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
+/// ```
+/// 
+#[proc_macro]
+pub fn pealn_writeln( item: TokenStream) -> TokenStream {
+    let WriteInput { writer, fmt, args } = parse_macro_input!(item as WriteInput);
+
+    let pea_code = fmt.value();
+    let formatted = parse_pealn_format(&pea_code);
+
+    let expanded = quote! {
+        writeln!(#writer, #formatted, #args)
+    };
+
+    expanded.into()
+
+}
+
 
 
 ///
