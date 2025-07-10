@@ -1,5 +1,5 @@
 
-use pealn::{pealn, pealn_eprint, pealn_eprintln};
+use pealn::{pealn};
 fn main() {
 
     let name  = "Subham Shaw";

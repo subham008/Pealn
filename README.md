@@ -40,11 +40,15 @@
 
 ## Pealn is an Alternative
 
-| Traditional Rust Macro | Pealn Macro Alternative |
+| Traditional Rust Macro | Pealn Macro Alternative|
 |------------------------|------------------------|
 | `print!()`             | `pea!()`               |
 | `println!()`           | `pealn!()`             |
-
+| `write!()`             | `pealn_write!()`       |
+| `writeln!()`           | `pealn_writeln!()`     |
+| `format!()`            | `pealn_format!()`      |
+| `eprint!()`            | `pealn_eprint!()`      |
+| `eprintln!()`          | `pealn_eprintln!()`    |
 ## Installation
 
 Add Pealn to your Cargo.toml:
