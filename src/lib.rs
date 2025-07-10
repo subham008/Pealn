@@ -37,13 +37,28 @@ use crate::pea_compiled::PeaCompiled;
 /// 
 /// [[foreground,background,styles....]](text)
 /// 
-/// ### Available Colors 
-/// red, green, blue, yellow, cyan, purple , magenta, black, white
 /// 
+/// ## 🎨 Available Colors
+/// - 🟥 Red: `[red](text)`
+/// - 🟩 Green: `[green](text)`
+/// - 🟦 Blue: `[blue](text)`
+/// - 🟨 Yellow: `[yellow](text)`
+/// - 🟦 Cyan: `[cyan](text)`
+/// - 🟪 Purple: `[purple](text)`
+/// - 🟪 Magenta: `[magenta](text)`
+/// - ⬛ Black: `[black](text)`
+/// - ⬜ White: `[white](text)``
+///#### Didn't find your color? You can use RGB values like this: `[(r,g,b)](text)`
 /// 
-/// ### Available Styles 
-/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
-/// 
+/// ## ✨ Available Styles
+/// - **Bold**: `[bold](text)`
+/// - *Italic*: `[italic](text)`
+/// - _Underline_: `[underline](text)`
+/// - Dim: `[dim](text)`
+/// - Blink: `[blink](text)`
+/// - Reverse: `[reverse](text)`
+/// - Hidden: `[hidden](text)`
+/// - Strikethrough: `[strikethrough](text)`
 /// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
@@ -110,13 +125,27 @@ pub fn pealn(item: TokenStream) -> TokenStream {
 /// 
 /// [[foreground,background,styles....]](text)
 /// 
-/// ### Available Colors 
-/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
+/// ## 🎨 Available Colors
+/// - 🟥 Red: `[red](text)`
+/// - 🟩 Green: `[green](text)`
+/// - 🟦 Blue: `[blue](text)`
+/// - 🟨 Yellow: `[yellow](text)`
+/// - 🟦 Cyan: `[cyan](text)`
+/// - 🟪 Purple: `[purple](text)`
+/// - 🟪 Magenta: `[magenta](text)`
+/// - ⬛ Black: `[black](text)`
+/// - ⬜ White: `[white](text)``
+///#### Didn't find your color? You can use RGB values like this: `[(r,g,b)](text)`
 /// 
-/// 
-/// ### Available Styles 
-/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
-/// 
+/// ## ✨ Available Styles
+/// - **Bold**: `[bold](text)`
+/// - *Italic*: `[italic](text)`
+/// - _Underline_: `[underline](text)`
+/// - Dim: `[dim](text)`
+/// - Blink: `[blink](text)`
+/// - Reverse: `[reverse](text)`
+/// - Hidden: `[hidden](text)`
+/// - Strikethrough: `[strikethrough](text)`
 /// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
@@ -185,13 +214,27 @@ pub fn pea(item: TokenStream) -> TokenStream {
 /// 
 /// [[foreground,background,styles....]](text)
 /// 
-/// ### Available Colors 
-/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
+/// ## 🎨 Available Colors
+/// - 🟥 Red: `[red](text)`
+/// - 🟩 Green: `[green](text)`
+/// - 🟦 Blue: `[blue](text)`
+/// - 🟨 Yellow: `[yellow](text)`
+/// - 🟦 Cyan: `[cyan](text)`
+/// - 🟪 Purple: `[purple](text)`
+/// - 🟪 Magenta: `[magenta](text)`
+/// - ⬛ Black: `[black](text)`
+/// - ⬜ White: `[white](text)``
+///#### Didn't find your color? You can use RGB values like this: `[(r,g,b)](text)`
 /// 
-/// 
-/// ### Available Styles 
-/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
-/// 
+/// ## ✨ Available Styles
+/// - **Bold**: `[bold](text)`
+/// - *Italic*: `[italic](text)`
+/// - _Underline_: `[underline](text)`
+/// - Dim: `[dim](text)`
+/// - Blink: `[blink](text)`
+/// - Reverse: `[reverse](text)`
+/// - Hidden: `[hidden](text)`
+/// - Strikethrough: `[strikethrough](text)`
 /// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
@@ -263,13 +306,27 @@ pub fn pealn_eprint(item: TokenStream) -> TokenStream {
 /// 
 /// [[foreground,background,styles....]](text)
 /// 
-/// ### Available Colors 
-/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
+/// ## 🎨 Available Colors
+/// - 🟥 Red: `[red](text)`
+/// - 🟩 Green: `[green](text)`
+/// - 🟦 Blue: `[blue](text)`
+/// - 🟨 Yellow: `[yellow](text)`
+/// - 🟦 Cyan: `[cyan](text)`
+/// - 🟪 Purple: `[purple](text)`
+/// - 🟪 Magenta: `[magenta](text)`
+/// - ⬛ Black: `[black](text)`
+/// - ⬜ White: `[white](text)``
+///#### Didn't find your color? You can use RGB values like this: `[(r,g,b)](text)`
 /// 
-/// 
-/// ### Available Styles 
-/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
-/// 
+/// ## ✨ Available Styles
+/// - **Bold**: `[bold](text)`
+/// - *Italic*: `[italic](text)`
+/// - _Underline_: `[underline](text)`
+/// - Dim: `[dim](text)`
+/// - Blink: `[blink](text)`
+/// - Reverse: `[reverse](text)`
+/// - Hidden: `[hidden](text)`
+/// - Strikethrough: `[strikethrough](text)`
 /// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
@@ -366,13 +423,27 @@ impl Parse for WriteInput {
 /// 
 /// [[foreground,background,styles....]](text)
 /// 
-/// ### Available Colors 
-/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
+/// ## 🎨 Available Colors
+/// - 🟥 Red: `[red](text)`
+/// - 🟩 Green: `[green](text)`
+/// - 🟦 Blue: `[blue](text)`
+/// - 🟨 Yellow: `[yellow](text)`
+/// - 🟦 Cyan: `[cyan](text)`
+/// - 🟪 Purple: `[purple](text)`
+/// - 🟪 Magenta: `[magenta](text)`
+/// - ⬛ Black: `[black](text)`
+/// - ⬜ White: `[white](text)``
+///#### Didn't find your color? You can use RGB values like this: `[(r,g,b)](text)`
 /// 
-/// 
-/// ### Available Styles 
-/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
-/// 
+/// ## ✨ Available Styles
+/// - **Bold**: `[bold](text)`
+/// - *Italic*: `[italic](text)`
+/// - _Underline_: `[underline](text)`
+/// - Dim: `[dim](text)`
+/// - Blink: `[blink](text)`
+/// - Reverse: `[reverse](text)`
+/// - Hidden: `[hidden](text)`
+/// - Strikethrough: `[strikethrough](text)`
 /// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
@@ -449,13 +520,27 @@ pub fn pealn_write( item: TokenStream) -> TokenStream {
 /// 
 /// [[foreground,background,styles....]](text)
 /// 
-/// ### Available Colors 
-/// red, green, blue, yellow, cyan, purple ,  magenta, black, white
+/// ## 🎨 Available Colors
+/// - 🟥 Red: `[red](text)`
+/// - 🟩 Green: `[green](text)`
+/// - 🟦 Blue: `[blue](text)`
+/// - 🟨 Yellow: `[yellow](text)`
+/// - 🟦 Cyan: `[cyan](text)`
+/// - 🟪 Purple: `[purple](text)`
+/// - 🟪 Magenta: `[magenta](text)`
+/// - ⬛ Black: `[black](text)`
+/// - ⬜ White: `[white](text)``
+///#### Didn't find your color? You can use RGB values like this: `[(r,g,b)](text)`
 /// 
-/// 
-/// ### Available Styles 
-/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
-/// 
+/// ## ✨ Available Styles
+/// - **Bold**: `[bold](text)`
+/// - *Italic*: `[italic](text)`
+/// - _Underline_: `[underline](text)`
+/// - Dim: `[dim](text)`
+/// - Blink: `[blink](text)`
+/// - Reverse: `[reverse](text)`
+/// - Hidden: `[hidden](text)`
+/// - Strikethrough: `[strikethrough](text)`
 /// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
@@ -531,13 +616,27 @@ pub fn pealn_writeln( item: TokenStream) -> TokenStream {
 /// 
 /// [[foreground,background,styles....]](text)
 /// 
-/// ### Available Colors 
-/// red, green, blue, yellow, cyan, purple , magenta, black, white
+/// ## 🎨 Available Colors
+/// - 🟥 Red: `[red](text)`
+/// - 🟩 Green: `[green](text)`
+/// - 🟦 Blue: `[blue](text)`
+/// - 🟨 Yellow: `[yellow](text)`
+/// - 🟦 Cyan: `[cyan](text)`
+/// - 🟪 Purple: `[purple](text)`
+/// - 🟪 Magenta: `[magenta](text)`
+/// - ⬛ Black: `[black](text)`
+/// - ⬜ White: `[white](text)``
+///#### Didn't find your color? You can use RGB values like this: `[(r,g,b)](text)`
 /// 
-/// 
-/// ### Available Styles 
-/// bold, dim, italic, underline, blink, reverse, hidden, strikethrough
-/// 
+/// ## ✨ Available Styles
+/// - **Bold**: `[bold](text)`
+/// - *Italic*: `[italic](text)`
+/// - _Underline_: `[underline](text)`
+/// - Dim: `[dim](text)`
+/// - Blink: `[blink](text)`
+/// - Reverse: `[reverse](text)`
+/// - Hidden: `[hidden](text)`
+/// - Strikethrough: `[strikethrough](text)`
 /// #### *Some Styles are not supported in all terminals
 /// 
 /// ## Examples
