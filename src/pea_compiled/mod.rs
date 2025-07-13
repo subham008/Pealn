@@ -5,11 +5,14 @@ use regex::Regex;
 pub mod pea_color;
 pub mod pea_styles;
 
+use pea_color::PeaColor;
+use pea_styles::PeaStyle;
+
 #[derive(Debug, Clone)]
 pub struct PeaCompiled {
-    pub foreground: Option<(u8, u8, u8)>, // RGB values for foreground color
-    pub background: Option<(u8, u8, u8)>, // RGB values for background color
-    pub styles: Vec<pea_styles::PeaStyle>, // all styles applied
+    pub foreground: Option<PeaColor>, // RGB values for foreground color
+    pub background: Option<PeaColor>, // RGB values for background color
+    pub styles: Vec<PeaStyle>, // all styles applied
 }
 
 
@@ -26,7 +29,7 @@ fn panic_pealn_error(error:PealnError ,arg: &str, code: &str) {
             panic!( "pealn error : invalid argument ` {} ` at {}",  arg,   code  );
         },
         PealnError::Repeated => {
-            panic!( "pealn error : repeated argument ` {} ` at {}",  arg,   code   );
+            panic!( "pealn error : repeated argument ` {} ` at {} \n  either you have used more than 2 colors or you have  used one style multiple times",  arg,   code   );
         },
         
     }
@@ -44,26 +47,27 @@ impl PeaCompiled {
             .collect();
 
         // Process the args to extract foreground, background, and styles
-        let mut foreground: Option<(u8,u8,u8)> = None;
-        let mut background: Option<(u8,u8,u8)> = None;
-        let mut styles: Vec<pea_styles::PeaStyle> = Vec::new();
+        let mut foreground: Option<PeaColor> = None;
+        let mut background: Option<PeaColor> = None;
+        let mut styles: Vec<PeaStyle> = Vec::new();
        
    
         //firt two argumeny are colors, then styles :  [foreground, background, link(Crates.io) styles...] if something like link is found it will be called as modifier
         for arg in args {
           
-          if let Some(color) = pea_color::PeaColor::from(arg.as_str()){
+          if let Some(color) = PeaColor::from(arg.as_str()){
                 if foreground.is_none() {
-                    foreground = Some(color.rgb());
+                        foreground = Some(color);
                 }
                 else if background.is_none() {
-                    background = Some(color.rgb());
+                        background = Some(color);
+                    
                 }
                 else {
                     panic_pealn_error( PealnError::Repeated,&arg, &full_code);
                 }
           }
-          else if let Some(style) = pea_styles::PeaStyle::from(arg.as_str()){
+          else if let Some(style) = PeaStyle::from(arg.as_str()){
                  styles.push(style); 
           }
         
@@ -74,9 +78,8 @@ impl PeaCompiled {
             
     } //end of loop
              
-       //TODO  return valid modifiers
         PeaCompiled {
-            foreground:  foreground,
+            foreground: foreground,
             background: background,
             styles: styles ,
         }

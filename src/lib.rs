@@ -28,7 +28,7 @@ impl Parse for PrintlnInput {
 mod pea_parse;
 mod pea_compiled;
 
-use crate::pea_compiled::PeaCompiled;
+use crate::pea_compiled::{pea_color::PeaColor, PeaCompiled};
 
 
 ///pealn! is an alternative to println! macro.
@@ -739,19 +739,27 @@ fn parse_pealn_format(input: &str) -> String {
 
         //adding foreground color to the prefix
 
-        if let Some((r, g, b)) = pea_compiled.foreground {
-            if !pea_compiled.styles.is_empty() {
-                prefix.push(';'); // Add a semicolon if styles are present
+        if let Some(color) = pea_compiled.foreground {
+            if color != PeaColor::Default{
+                 if !pea_compiled.styles.is_empty(){
+                    prefix.push(';'); // Add a semicolon if styles are present
+                 }
+
+                let (r, g, b) = color.rgb();
+                prefix.push_str(&format!("38;2;{};{};{}", r, g, b));
             }
-            prefix.push_str(&format!("38;2;{};{};{}", r, g, b));
         }
 
         //adding background color to the prefix
-        if let Some((r, g, b)) = pea_compiled.background {
-            if !pea_compiled.styles.is_empty() || pea_compiled.foreground.is_some()  {
-                prefix.push(';'); // Add a semicolon if styles are present
+        if let Some(color) = pea_compiled.background {
+            if color != PeaColor::Default {
+                 // Add a semicolon if styles or foreground are present
+                 if !pea_compiled.styles.is_empty() || pea_compiled.foreground.is_some() {
+                    prefix.push(';'); // Add a semicolon if styles are present
+                 }
+                 let (r, g, b) = color.rgb();
+                 prefix.push_str(&format!("48;2;{};{};{}", r, g, b));
             }
-            prefix.push_str(&format!("48;2;{};{};{}", r, g, b));
         }
         prefix.push('m'); // ANSI escape code suffix
         suffix.push_str("\x1b[0m"); // ANSI escape code prefix
