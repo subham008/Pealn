@@ -2,7 +2,6 @@
 
 use regex::Regex;
 
-pub mod color_mode;
 pub mod pea_color;
 pub mod pea_styles;
 

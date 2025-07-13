@@ -31,6 +31,7 @@
 </p>
 
 ## Features
+- **Fatest** Pealn is fastest among other famous ones. see [benchmarks](./benches/README.md)
 - **Compile time** format pealn codes during compile time i,e \[red](name) converted to \x1b\[38;2;255;0;0m name \x1b[0m during compile time
 - **Easy to use** Apply modification inside string
 - **Pre defined Colors** Common colors  are already defined
