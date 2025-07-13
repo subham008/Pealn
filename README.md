@@ -145,4 +145,11 @@ print new line  with colored and styles
  ```
 ---
 
+
+## 🤝 Contributing
+
+We welcome contributions!  
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+
 *Pealn makes your CLI apps more colorful and expressive!*

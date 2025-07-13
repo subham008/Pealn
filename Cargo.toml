@@ -11,7 +11,6 @@ readme = "README.md"
 regex = "1.11.1"
 syn = { version = "2", features = ["full"] }
 quote = "1.0"
-atty = "0.2.14"
 
 [lib]
 proc-macro = true
