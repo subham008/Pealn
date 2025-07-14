@@ -146,6 +146,7 @@ print new line  with colored and styles
  ```
 ---
 
+### see [docs](./docs/README.md) for detailed information
 
 ## 🤝 Contributing
 
