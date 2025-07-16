@@ -1,3 +1,7 @@
+
+#![doc = include_str!(".././docs/README.md")]
+
+
 use regex::Regex;
 use proc_macro::TokenStream;
 use syn::{parse_macro_input, Expr, Token, LitStr, parse::{Parse , ParseStream}, punctuated::Punctuated};
@@ -69,6 +73,12 @@ use crate::pea_compiled::{pea_color::PeaColor, PeaCompiled};
 /// let name  = "Subham Shaw";
 /// pealn!("[yellow](Name) : [green]({}) " , name );
 /// ```
+/// To print text with background
+/// ```
+/// use pealn::{pealn};
+/// let name  = "Subham Shaw";
+/// pealn!("[default,yellow](Name) : [default,green]({}) " , name );
+/// ```
 /// 
 /// To print text with foreground and background
 /// ```
@@ -101,6 +111,9 @@ use crate::pea_compiled::{pea_color::PeaColor, PeaCompiled};
 /// //first color will be used as foreground and second as background
 /// pealn!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
+/// 
+/// 
+/// see ![docs](https://github.com/subham008/Pealn/tree/master/docs) for more details
 
 
 #[proc_macro]
@@ -157,6 +170,12 @@ pub fn pealn(item: TokenStream) -> TokenStream {
 /// pealn_write!("[yellow](Name) : [green]({}) " , name );
 /// ```
 /// 
+/// To print text with background
+/// ```
+/// use pealn::{pealn};
+/// let name  = "Subham Shaw";
+/// pealn!("[default,yellow](Name) : [default,green]({}) " , name );
+/// ```
 /// To print text with foreground and background
 /// ```
 /// use pealn::{pealn_write};
@@ -190,6 +209,8 @@ pub fn pealn(item: TokenStream) -> TokenStream {
 /// pealn_write!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
 /// 
+/// 
+/// see ![docs](https://github.com/subham008/Pealn/tree/master/docs) for more details
 #[proc_macro]
 pub fn pea(item: TokenStream) -> TokenStream {
     let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
@@ -245,6 +266,12 @@ pub fn pea(item: TokenStream) -> TokenStream {
 /// let name  = "Subham Shaw";
 /// pealn_eprint!("[yellow](Name) : [green]({}) " , name );
 /// ```
+/// To print text with background
+/// ```
+/// use pealn::{pealn};
+/// let name  = "Subham Shaw";
+/// pealn!("[default,yellow](Name) : [default,green]({}) " , name );
+/// ```
 /// 
 /// To print text with foreground and background
 /// ```
@@ -279,6 +306,8 @@ pub fn pea(item: TokenStream) -> TokenStream {
 /// pealn_eprint!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
 /// 
+/// 
+/// see ![docs](https://github.com/subham008/Pealn/tree/master/docs) for more details
 #[proc_macro]
 pub fn pealn_eprint(item: TokenStream) -> TokenStream {
     let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
@@ -337,6 +366,12 @@ pub fn pealn_eprint(item: TokenStream) -> TokenStream {
 /// let name  = "Subham Shaw";
 /// pealn_eprintln!("[yellow](Name) : [green]({}) " , name );
 /// ```
+/// To print text with background
+/// ```
+/// use pealn::{pealn};
+/// let name  = "Subham Shaw";
+/// pealn!("[default,yellow](Name) : [default,green]({}) " , name );
+/// ```
 /// 
 /// To print text with foreground and background
 /// ```
@@ -371,6 +406,8 @@ pub fn pealn_eprint(item: TokenStream) -> TokenStream {
 /// pealn_eprintln!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
 /// 
+/// 
+/// see ![docs](https://github.com/subham008/Pealn/tree/master/docs) for more details 
 #[proc_macro]
 pub fn pealn_eprintln(item: TokenStream) -> TokenStream {
     let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);
@@ -455,6 +492,12 @@ impl Parse for WriteInput {
 /// let f = std::io::stdout();
 /// pealn_write!(f,"[yellow](Name) : [green]({}) " , name );
 /// ```
+/// To print text with background
+/// ```
+/// use pealn::{pealn};
+/// let name  = "Subham Shaw";
+/// pealn!("[default,yellow](Name) : [default,green]({}) " , name );
+/// ```
 /// 
 /// To print text with foreground and background
 /// ```
@@ -492,6 +535,8 @@ impl Parse for WriteInput {
 /// pealn_write!(f,"[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
 /// 
+/// 
+/// see ![docs](https://github.com/subham008/Pealn/tree/master/docs) for more details 
 #[proc_macro]
 pub fn pealn_write( item: TokenStream) -> TokenStream {
     let WriteInput { writer, fmt, args } = parse_macro_input!(item as WriteInput);
@@ -553,6 +598,13 @@ pub fn pealn_write( item: TokenStream) -> TokenStream {
 /// pealn_writeln!(f,"[yellow](Name) : [green]({}) " , name );
 /// ```
 /// 
+/// To print text with background
+/// ```
+/// use pealn::{pealn};
+/// let name  = "Subham Shaw";
+/// pealn!("[default,yellow](Name) : [default,green]({}) " , name );
+/// ```
+/// 
 /// To print text with foreground and background
 /// ```
 /// use pealn::{pealn_writeln};
@@ -589,6 +641,8 @@ pub fn pealn_write( item: TokenStream) -> TokenStream {
 /// pealn_writeln!(f,"[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
 /// 
+/// 
+/// see ![docs](https://github.com/subham008/Pealn/tree/master/docs) for more details 
 #[proc_macro]
 pub fn pealn_writeln( item: TokenStream) -> TokenStream {
     let WriteInput { writer, fmt, args } = parse_macro_input!(item as WriteInput);
@@ -648,6 +702,13 @@ pub fn pealn_writeln( item: TokenStream) -> TokenStream {
 /// pealn_format!("[yellow](Name) : [green]({}) " , name );
 /// ```
 /// 
+/// To print text with background
+/// ```
+/// use pealn::{pealn};
+/// let name  = "Subham Shaw";
+/// pealn!("[default,yellow](Name) : [default,green]({}) " , name );
+/// ```
+/// 
 /// To print text with foreground and background
 /// ```
 /// use pealn::{pealn_format};
@@ -679,6 +740,9 @@ pub fn pealn_writeln( item: TokenStream) -> TokenStream {
 /// //first color will be used as foreground and second as background
 /// pealn_format!("[red,green,bold,underline](Hello) [yellow,white,italic](World)!");
 /// ```
+/// 
+/// 
+/// see ![docs](https://github.com/subham008/Pealn/tree/master/docs) for more details
 #[proc_macro]
 pub fn pealn_format(  item: TokenStream) -> TokenStream {
    let PrintlnInput { fmt , args } = parse_macro_input!(item as PrintlnInput);

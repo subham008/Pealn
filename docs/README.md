@@ -1,7 +1,7 @@
 # Introduction
 **Pealn** is a **Rust library** to print **colored** and **styled** to **console**
 ## Features
-- **Fatest** Pealn is fastest among other famous ones. see [benchmarks](./benches/README.md)
+- **Fatest** Pealn is fastest among other famous ones. see [benchmarks](.././benches/README.md)
 - **Compile time** format pealn codes during compile time 
 - **Easy to use** Apply modification inside string
 - **Pre defined Colors** Common colors  are already defined

@@ -112,12 +112,16 @@ print new line  with colored and styles
  ```rust
  use pealn::{pealn};
  pealn!("[yellow](Hello) [green](World)!");
- let name  = "Subham Shaw";
- pealn!("[yellow,bold](Name) : [bold,hidden]({}) " , name );
  ```
 
- you can use RGB color 
 
+To print text with background
+ ```rust
+ use pealn::{pealn};
+ pealn!("[default,yellow](Hello) [default,green](World)!");
+ ```
+
+you can use RGB color too
 ```rust
  use pealn::{pealn};
  pealn!("[(25,45,78)](Hello) [(34,67,78)](World)!");
