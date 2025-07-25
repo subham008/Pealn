@@ -56,7 +56,7 @@ Add Pealn to your Cargo.toml:
 
 ```toml
 [dependencies]
-pealn = "0.3"
+pealn = "0.4"
 ```
 
 Add Pealn using Cargo CLI:

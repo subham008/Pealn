@@ -12,7 +12,6 @@ fn main() {
     pealn!("[yellow,bold](Phone)  : [orange,orange,bold]({}) " , phone );
     pealn!("[yellow,bold](Email)  : [bold,italic]({}) " , email );
 
-
  }
 
 

@@ -1,12 +1,12 @@
-#![allow(non_snake_case)]
+
 
 use std::fmt;
 
-#[allow(non_snake_case)]
+
 pub struct PeaParsed {
-     pub startIndex: usize,
-     pub endIndex: usize,
-     pub fullMatch: String, // Full match string
+     pub start_index: usize,
+     pub end_index: usize,
+     pub full_match: String, // Full match string
      pub modifier:String,
      pub value: String
 }

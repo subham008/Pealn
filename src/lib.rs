@@ -1,7 +1,6 @@
 
 #![doc = include_str!(".././docs/README.md")]
 
-
 use regex::Regex;
 use proc_macro::TokenStream;
 use syn::{parse_macro_input, Expr, Token, LitStr, parse::{Parse , ParseStream}, punctuated::Punctuated};
@@ -775,9 +774,9 @@ fn parse_pealn_format(input: &str) -> String {
       let full_match = cap.get(0).unwrap(); // Get the full match to access start/end indices
       parse_list.push(
         pea_parse::PeaParsed {
-            startIndex: full_match.start(),
-            endIndex: full_match.end(),
-            fullMatch: full_match.as_str().to_string(),
+            start_index: full_match.start(),
+            end_index: full_match.end(),
+            full_match: full_match.as_str().to_string(),
             modifier: cap[1].to_string(),
             value: cap[2].to_string()
           }
@@ -792,7 +791,7 @@ fn parse_pealn_format(input: &str) -> String {
         let mut prefix  = String::new();
         let mut suffix  = String::new();
        
-        let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier ,&parsed.fullMatch);
+        let pea_compiled = PeaCompiled::from_modifier(&parsed.modifier ,&parsed.full_match);
         
 
         prefix.push_str("\x1b["); // ANSI escape code prefix
@@ -836,8 +835,8 @@ fn parse_pealn_format(input: &str) -> String {
 
     // Replace the original formatted parts in the result string
     for (parsed, formatted) in formatted_result.iter().rev() {
-        let start = parsed.startIndex;
-        let end = parsed.endIndex;
+        let start = parsed.start_index;
+        let end = parsed.end_index;
         result.replace_range(start..end, &formatted);
     }
     
