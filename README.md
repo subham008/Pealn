@@ -155,7 +155,7 @@ you can use RGB color too
 ## 🤝 Contributing
 
 We welcome contributions!  
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Please see [CONTRIBUTION.md](CONTRIBUTION.md) for guidelines.
 
 
 *Pealn makes your CLI apps more colorful and expressive!*
