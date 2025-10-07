@@ -93,7 +93,16 @@ impl PeaCompiled {
                 }
 
                 PeaModifier::Style(style) => {
+                    //hereve we have to check if style is already present in styles vector
+                    if styles
+                        .iter()
+                        .any(|s| s.is_first() && s.first().unwrap() == &style)
+                    {
+                        panic_pealn_error(PealnError::RepeatedStyle, &arg, &full_code);
+                        continue;
+                    }else{
                     styles.push(MultiValue::First(style));
+                    }
                 }
                 PeaModifier::CodeBlock(code_block) => {
                     if foreground.is_first() && foreground.first().unwrap().is_none() {
