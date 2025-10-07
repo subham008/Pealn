@@ -8,15 +8,15 @@ license = "MIT"
 edition = "2024"
 readme = "README.md"
 [dependencies]
-regex = "1.11.1"
-syn = { version = "2", features = ["full"] }
-quote = "1.0"
+regex = "1.11.3"
+syn = { version = "2.0.106", features = ["full"] }
+quote = "1.0.41"
 
 [dev-dependencies]
 colored = "3.0.0"
 crossterm = "0.29.0"
 termcolor = "1.4.1"
-criterion = "0.6.0"
+criterion = "0.7.0"
 
 [[bench]]
 name = "pealn_benchmark"

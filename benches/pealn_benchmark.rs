@@ -1,6 +1,4 @@
-use criterion::{ criterion_group, criterion_main, Criterion};
-
-
+use criterion::{Criterion, criterion_group, criterion_main};
 
 fn bench_pealn(c: &mut Criterion) {
     use pealn::pealn;
@@ -9,14 +7,13 @@ fn bench_pealn(c: &mut Criterion) {
             pealn!("[red](error) : [yellow](Invalid argument at) [blue](line 42) : [green](This is a test message)");
         })
     });
-
 }
 
 fn bench_colored(c: &mut Criterion) {
     use colored::*;
     c.bench_function("colored", |b| {
         b.iter(|| {
-           println!(
+            println!(
                 "{} : {} {} : {}",
                 "error".red(),
                 "Invalid argument at".yellow(),
@@ -42,10 +39,9 @@ fn bench_crossterm(c: &mut Criterion) {
     });
 }
 
-
 fn bench_termcolor(c: &mut Criterion) {
-    use termcolor::{Color as TCColor, ColorChoice, ColorSpec, StandardStream, WriteColor};
     use std::io::Write;
+    use termcolor::{Color as TCColor, ColorChoice, ColorSpec, StandardStream, WriteColor};
     c.bench_function("termcolor", |b| {
         b.iter(|| {
             let mut buf = StandardStream::stdout(ColorChoice::Always);
@@ -71,7 +67,11 @@ fn bench_termcolor(c: &mut Criterion) {
     });
 }
 
-
-
-criterion_group!(benches,bench_pealn, bench_colored,bench_crossterm,bench_termcolor);
+criterion_group!(
+    benches,
+    bench_pealn,
+    bench_colored,
+    bench_crossterm,
+    bench_termcolor
+);
 criterion_main!(benches);
