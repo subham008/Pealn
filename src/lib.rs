@@ -1,7 +1,7 @@
 #![doc = include_str!(".././docs/README.md")]
 
 use proc_macro::TokenStream;
-use quote::quote;
+use quote::{ToTokens, quote};
 use regex::Regex;
 use syn::{
     Expr, LitStr, Token,
@@ -782,7 +782,7 @@ pub fn import_pea_colors(_: TokenStream) -> TokenStream {
                 PeaColor::White => write!(f, "255;255;255"),
                 PeaColor::Purple => write!(f, "128;0;128"),
                 PeaColor::Orange => write!(f, "235;143;52"),
-                PeaColor::Default => write!(f, "0;0;0"),
+                PeaColor::Default => write!(f, "255,255,255"), // Default color code (black)
                 PeaColor::RGB(r, g, b) => write!(f, "{};{};{}", r, g, b),
             }
         }
@@ -807,6 +807,7 @@ pub fn import_pea_styles(_: TokenStream) -> TokenStream {
                 REVERSE,
                 HIDDEN,
                 STRIKETHROUGH,
+                Default,
             }
 
 
@@ -821,6 +822,8 @@ pub fn import_pea_styles(_: TokenStream) -> TokenStream {
                         PeaStyle::REVERSE => 7,
                         PeaStyle::HIDDEN => 8,
                         PeaStyle::STRIKETHROUGH => 9,
+                        PeaStyle::Default => 0,
+
                     }
                 }
                 }
@@ -937,7 +940,7 @@ fn parse_pealn_format(input: &str, args: &mut Punctuated<Expr, Comma>) -> String
 
                 args.insert(
                     arg_required_start_index,
-                    syn::parse_str(code_block.code.as_str()).unwrap(),
+                    syn::parse_str(&code_block.code.as_str()).unwrap(),
                 );
                 arg_required_start_index += 1; // Increment position for next insertion
             }
@@ -974,7 +977,7 @@ fn parse_pealn_format(input: &str, args: &mut Punctuated<Expr, Comma>) -> String
 
                 args.insert(
                     arg_required_start_index,
-                    syn::parse_str(code_block.code.as_str()).unwrap(),
+                    syn::parse_str(&code_block.code.as_str()).unwrap(),
                 );
                 arg_required_start_index += 1; // Increment position for next insertion
             }
@@ -987,7 +990,8 @@ fn parse_pealn_format(input: &str, args: &mut Punctuated<Expr, Comma>) -> String
         //peastyels | ; is FG exists| foreground | ; if BG exists | background | text
         let formatted_string = format!("{} {} {}", prefix, parsed.value, suffix);
         // dbg!(&formatted_string);
-        // dbg!(&args.to_token_stream());
+        // dbg!(&args.to_token_stream().to_string());
+
         formatted_result.push((parsed, formatted_string));
     } // end of for loop
 
